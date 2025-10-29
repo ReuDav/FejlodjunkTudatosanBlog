@@ -12,6 +12,8 @@
     "preview": "rsbuild preview"
   },
   "dependencies": {
+    "@lynx-js/web-core": "^0.18.1",
+    "@lynx-js/web-elements": "^0.8.9",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

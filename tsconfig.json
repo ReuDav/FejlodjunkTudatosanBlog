@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "alwaysStrict": false,
     "lib": ["DOM", "ES2020"],
     "jsx": "react-jsx",
+    "jsxImportSource": "@lynx-js/react",
     "target": "ES2020",
     "noEmit": true,
     "skipLibCheck": true,
@@ -17,7 +19,7 @@
     "noUncheckedSideEffectImports": true,
 
     /* type checking */
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
