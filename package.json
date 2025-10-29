@@ -1,35 +1,36 @@
 {
-  "name": "rsbuild-react-ts",
+  "name": "rspeedy-react-js",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "scripts": {
-    "build": "rsbuild build",
-    "check": "biome check --write",
-    "dev": "rsbuild dev --open",
+    "build": "rspeedy build",
+    "dev": "rspeedy dev",
     "format": "prettier --write .",
-    "lint": "eslint .",
-    "preview": "rsbuild preview"
+    "preview": "rspeedy preview",
+    "test": "vitest run"
   },
   "dependencies": {
+    "@lynx-js/react": "^0.114.3",
     "@lynx-js/web-core": "^0.18.1",
     "@lynx-js/web-elements": "^0.8.9",
+    "@testing-library/react": "^16.3.0",
+    "install": "^0.13.0",
+    "lynx": "^0.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.3",
-    "@eslint/js": "^9.35.0",
-    "@rsbuild/core": "^1.5.14",
-    "@rsbuild/plugin-react": "^1.4.1",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
-    "eslint": "^9.35.0",
-    "eslint-plugin-react-hooks": "^7.0.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.3.0",
+    "@lynx-js/preact-devtools": "^5.0.1-cf9aef5",
+    "@lynx-js/qrcode-rsbuild-plugin": "^0.4.2",
+    "@lynx-js/react-rsbuild-plugin": "^0.11.2",
+    "@lynx-js/rspeedy": "^0.11.7",
+    "@testing-library/jest-dom": "^6.9.1",
+    "jsdom": "^26.1.0",
     "prettier": "^3.6.2",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.43.0"
-  }
+    "vitest": "^4.0.4"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
 }
