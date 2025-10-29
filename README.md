@@ -1,21 +1,38 @@
-## Rspeedy project
+# sv
 
-This is a ReactLynx project bootstrapped with `create-rspeedy`.
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## Getting Started
+## Creating a project
 
-First, install the dependencies:
+If you're seeing this, you've probably already done this step. Congrats!
 
-```bash
-pnpm install
+```sh
+# create a new project in the current directory
+npx sv create
+
+# create a new project in my-app
+npx sv create my-app
 ```
 
-Then, run the development server:
+## Developing
 
-```bash
-pnpm run dev
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```sh
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
 ```
 
-Scan the QRCode in the terminal with your LynxExplorer App to see the result.
+## Building
 
-You can start editing the page by modifying `src/App.tsx`. The page auto-updates as you edit the file.
+To create a production version of your app:
+
+```sh
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

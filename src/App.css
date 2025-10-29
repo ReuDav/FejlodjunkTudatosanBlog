@@ -1,119 +1,108 @@
+@import 'tailwindcss';
+@import '@fontsource/fira-mono';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
 :root {
-  background-color: #000;
-  --color-text: #fff;
+	--font-body:
+		Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+		'Open Sans', 'Helvetica Neue', sans-serif;
+	--font-mono: 'Fira Mono', monospace;
+	--color-bg-0: rgb(202, 216, 228);
+	--color-bg-1: hsl(209, 36%, 86%);
+	--color-bg-2: hsl(224, 44%, 95%);
+	--color-theme-1: #ff3e00;
+	--color-theme-2: #4075a6;
+	--color-text: rgba(0, 0, 0, 0.7);
+	--column-width: 42rem;
+	--column-margin-top: 4rem;
+	font-family: var(--font-body);
+	color: var(--color-text);
 }
 
-.Background {
-  position: fixed;
-  background: radial-gradient(
-    71.43% 62.3% at 46.43% 36.43%,
-    rgba(18, 229, 229, 0) 15%,
-    rgba(239, 155, 255, 0.3) 56.35%,
-    #ff6448 100%
-  );
-  box-shadow: 0px 12.93px 28.74px 0px #ffd28db2 inset;
-  border-radius: 50%;
-  width: 200vw;
-  height: 200vw;
-  top: -60vw;
-  left: -14.27vw;
-  transform: rotate(15.25deg);
+body {
+	min-height: 100vh;
+	margin: 0;
+	background-attachment: fixed;
+	background-color: var(--color-bg-1);
+	background-size: 100vw 100vh;
+	background-image:
+		radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 100%),
+		linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
 }
 
-.App {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+h1,
+h2,
+p {
+	font-weight: 400;
 }
 
-text {
-  color: var(--color-text);
+p {
+	line-height: 1.5;
 }
 
-.Banner {
-  flex: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
+a {
+	color: var(--color-theme-1);
+	text-decoration: none;
 }
 
-.Logo {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
+a:hover {
+	text-decoration: underline;
 }
 
-.Logo--react {
-  width: 100px;
-  height: 100px;
-  animation: Logo--spin infinite 20s linear;
+h1 {
+	font-size: 2rem;
+	text-align: center;
 }
 
-.Logo--lynx {
-  width: 100px;
-  height: 100px;
-  animation: Logo--shake infinite 0.5s ease;
+h2 {
+	font-size: 1rem;
 }
 
-@keyframes Logo--spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+pre {
+	font-size: 16px;
+	font-family: var(--font-mono);
+	background-color: rgba(255, 255, 255, 0.45);
+	border-radius: 3px;
+	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
+	padding: 0.5em;
+	overflow-x: auto;
+	color: var(--color-text);
 }
 
-@keyframes Logo--shake {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+.text-column {
+	display: flex;
+	max-width: 48rem;
+	flex: 0.6;
+	flex-direction: column;
+	justify-content: center;
+	margin: 0 auto;
 }
 
-.Content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+input,
+button {
+	font-size: inherit;
+	font-family: inherit;
 }
 
-.Arrow {
-  width: 24px;
-  height: 24px;
+button:focus:not(:focus-visible) {
+	outline: none;
 }
 
-.Title {
-  font-size: 36px;
-  font-weight: 700;
+@media (min-width: 720px) {
+	h1 {
+		font-size: 2.4rem;
+	}
 }
 
-.Subtitle {
-  font-style: italic;
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.Description {
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 15rpx;
-}
-
-.Hint {
-  font-size: 12px;
-  margin: 5px;
-  color: rgba(255, 255, 255, 0.65);
+.visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
 }
