@@ -81,46 +81,80 @@
 </main>
 
 <style>
-    main {
-        height: calc(100vh - 100px);
-    }
+main {
+	height: calc(100vh - 100px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	width: 100%;
+	max-width: 64rem;
+	margin: 0 auto;
+	box-sizing: border-box;
+	height: 100%; /* ÚJ: hogy a gyerekek arányosak legyenek */
+}
+
+/* Szöveg + canvas konténerek */
+section > div {
+	flex: 1 1 300px;
+	box-sizing: border-box;
+	padding: 1rem;
+}
+
+.canvas-wrapper {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+}
+
+.canvas-container {
+	width: 100%;
+	height: 100%;
+}
+
+.spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 1.2rem;
+	color: #333;
+}
+
+/* ======= RESPONSIVE - max 768px ======= */
+@media (max-width: 768px) {
+	main {
+		height: calc(100vh - 100px);
+	}
+
 	section {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		gap: 2rem;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
+		flex-direction: column;
+		height: 100%;
+		padding: 0.5rem 1rem;
 	}
 
 	section > div {
-		flex: 1 1 50%;
-		min-width: 300px;
+		flex: 1 1 auto;
+		width: 100%;
+		padding: 0.5rem 0;
 	}
 
+	/* A canvas most max 55% magasságot kap */
 	.canvas-wrapper {
-		position: relative;
-		width: 100%;
-		max-width: 100%;
-		aspect-ratio: 1/1;
-		height: auto;
+		aspect-ratio: unset;
+		height: 55%;
 	}
 
 	.canvas-container {
-		width: 100%;
 		height: 100%;
 	}
+}
 
-	.spinner {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		font-size: 1.2rem;
-		color: #333;
-	}
 </style>
