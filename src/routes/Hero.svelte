@@ -2,9 +2,7 @@
 	import { onMount } from 'svelte';
 	import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 	import * as THREE from 'three';
-	import { setupI18n } from '$lib/i18n/i18n';
 	import { _ } from 'svelte-i18n';
-	setupI18n();
 
 	let canvasContainer: HTMLDivElement;
 	let loading = $state(true);

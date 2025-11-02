@@ -1,12 +1,54 @@
-<script lang="ts">
+<script>
 	import { Hamburger } from 'svelte-hamburgers';
-	import { locale, _, getLocaleFromNavigator } from 'svelte-i18n';
+	import { locale, _, dictionary } from 'svelte-i18n';
+	import { get } from 'svelte/store';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+
 	let isOpen = false;
+
+	// Navigációs menüpont kulcsok (slug & szöveg)
+	const links = [{ key: 'about' }, { key: 'blog' }, { key: 'contact' }];
+
+	// 🔧 Route key visszakeresése (slug alapján)
+	function getRouteKeyByValue(localeValue, pathSegment) {
+		const dict = get(dictionary);
+		const routes = dict?.[localeValue]?.routes;
+		if (!routes) return null;
+		return Object.keys(routes).find((key) => routes[key] === pathSegment);
+	}
+
+	// 🔄 Nyelvváltó függvény
+	async function switchLocale(newLocale) {
+	const dict = get(dictionary);
+
+	// Ha még nincs betöltve a fordítás
+	if (!dict?.[newLocale]?.routes) {
+		setTimeout(() => switchLocale(newLocale), 10);
+		return;
+	}
+
+	const currentPage = get(page);
+	const currentPath = currentPage.url.pathname;
+
+	const [, currentLocale, currentSegment] = currentPath.split('/');
+
+	const routeKey = getRouteKeyByValue(currentLocale, currentSegment);
+
+	const newSlug = dict?.[newLocale]?.routes?.[routeKey] || '';
+
+	locale.set(newLocale);
+
+	setTimeout(() => {
+		goto(`/${newLocale}/${newSlug}`);
+	}, 0);
+}
+
 </script>
 
 <header>
 	<nav>
-		<a href="/" class="logo">
+		<a href="/{$locale}" class="logo">
 			<img src="/logo.svg" alt="logo" />
 		</a>
 
@@ -22,13 +64,22 @@
 
 		<!-- Menüpontok (ugyanaz desktopra és mobil overlay-re) -->
 		<ul class="menu" class:is-open={isOpen}>
-			<li><a href="/about" on:click={() => (isOpen = false)}>{$_('nav.about')}</a></li>
-			<li><a href="/blog" on:click={() => (isOpen = false)}>{$_('nav.blog')}</a></li>
-			<li><a href="/contact" on:click={() => (isOpen = false)}>{$_('nav.contact')}</a></li>
+			<li>
+				<a href="/{$locale}">
+					{$_('nav.home')}
+				</a>
+			</li>
+			{#each links as { key }}
+				<li>
+					<a href={`/${$locale}/${$_(`routes.${key}`)}`} on:click={() => (isOpen = false)}>
+						{$_(`nav.${key}`)}
+					</a>
+				</li>
+			{/each}
 			<li>
 				<select
 					bind:value={$locale}
-					on:change={(e) => locale.set(e.target.value)}
+					on:change={(e) => switchLocale(e.target.value)}
 					class="lang-switcher"
 				>
 					<option value="hu">HU</option>

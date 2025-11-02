@@ -1,17 +1,15 @@
-import { register, init, getLocaleFromNavigator, locale as $locale } from 'svelte-i18n';
+import { register, init, getLocaleFromNavigator } from 'svelte-i18n';
 
-export const defaultLocale = 'hu';
+const LOCALES = ['en', 'hu'];
 
-// fordítások regisztrálása
 register('en', () => import('./en.json'));
 register('hu', () => import('./hu.json'));
 
-export async function setupI18n() {
-	await init({
-		fallbackLocale: defaultLocale,
-		initialLocale: getLocaleFromNavigator() || defaultLocale
-	});
-}
+export function setupI18n(locale) {
+  console.log('[i18n] INIT called with lang =', locale);
 
-// exportáljuk a store-t
-export const locale = $locale;
+  init({
+    fallbackLocale: 'hu',
+    initialLocale: locale || getLocaleFromNavigator(),
+  });
+}

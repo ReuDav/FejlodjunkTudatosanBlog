@@ -5,6 +5,11 @@
     "blog": "Blog",
     "contact": "Contact"
   },
+  "routes": {
+    "about": "about",
+    "blog": "blog",
+    "contact": "contact"
+  },
   "hero": {
     "title": "Hello there, I'm David!",
     "subtitle": "Welcome to the 'Develop Consciously' page! <br />This is my personal blog, diary, and a collection of my truths about life."

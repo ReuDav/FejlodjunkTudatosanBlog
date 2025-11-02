@@ -5,6 +5,11 @@
     "blog": "Blog",
     "contact": "Kapcsolat"
   },
+   "routes": {
+    "about": "rolunk",
+    "blog": "blog",
+    "contact": "kapcsolat"
+  },
   "hero": {
     "title": "Szervusz, Dávid vagyok!",
     "subtitle": "Üdvözöllek a Fejlődjünk Tudatosan oldalán! <br />Ez az én személyes blogom, naplóm és életigazságaim tárháza egyben!"

@@ -1,7 +1,6 @@
 <script>
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcomeFallback from '$lib/images/svelte-welcome.png';
-	import Hero from './Hero.svelte';
+	import Hero from "../Hero.svelte";
+
 </script>
 
 <svelte:head>
