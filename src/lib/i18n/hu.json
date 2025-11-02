@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "home": "Kezdőlap",
+    "about": "Rólam",
+    "blog": "Blog",
+    "contact": "Kapcsolat"
+  },
+  "hero": {
+    "title": "Szervusz, Dávid vagyok!",
+    "subtitle": "Üdvözöllek a Fejlődjünk Tudatosan oldalán! <br />Ez az én személyes blogom, naplóm és életigazságaim tárháza egyben!"
+  }
+}

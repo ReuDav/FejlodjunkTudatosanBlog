@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Me",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Hello there, I'm David!",
+    "subtitle": "Welcome to the 'Develop Consciously' page! <br />This is my personal blog, diary, and a collection of my truths about life."
+  }
+}

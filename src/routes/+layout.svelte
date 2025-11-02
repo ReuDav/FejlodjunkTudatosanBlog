@@ -1,7 +1,12 @@
 <script>
 	import Header from './Header.svelte';
 	import '../app.css';
+	import { setupI18n } from '$lib/i18n/i18n';
+	import { onMount } from 'svelte';
 
+	onMount(() => {
+		setupI18n();
+	});
 	/** @type {{children: import('svelte').Snippet}} */
 	let { children } = $props();
 </script>

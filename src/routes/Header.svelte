@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Hamburger } from 'svelte-hamburgers';
+	import { locale, _, getLocaleFromNavigator } from 'svelte-i18n';
 	let isOpen = false;
 </script>
 
@@ -15,15 +16,25 @@
 				open={isOpen}
 				onclick={() => (isOpen = !isOpen)}
 				type="spin"
-				--color={isOpen ? "white" : "black"}
+				--color={isOpen ? 'white' : 'black'}
 			/>
 		</div>
 
 		<!-- Menüpontok (ugyanaz desktopra és mobil overlay-re) -->
 		<ul class="menu" class:is-open={isOpen}>
-			<li><a href="/" on:click={() => (isOpen = false)}>Home</a></li>
-			<li><a href="/about" on:click={() => (isOpen = false)}>About</a></li>
-			<li><a href="/blog" on:click={() => (isOpen = false)}>Blog</a></li>
+			<li><a href="/about" on:click={() => (isOpen = false)}>{$_('nav.about')}</a></li>
+			<li><a href="/blog" on:click={() => (isOpen = false)}>{$_('nav.blog')}</a></li>
+			<li><a href="/contact" on:click={() => (isOpen = false)}>{$_('nav.contact')}</a></li>
+			<li>
+				<select
+					bind:value={$locale}
+					on:change={(e) => locale.set(e.target.value)}
+					class="lang-switcher"
+				>
+					<option value="hu">HU</option>
+					<option value="en">EN</option>
+				</select>
+			</li>
 		</ul>
 	</nav>
 </header>
@@ -89,6 +100,10 @@
 		margin: 0;
 		padding: 0;
 		transition: all 0.4s ease;
+	}
+	.lang-switcher {
+		background-color: transparent;
+		border: none;
 	}
 	/* === MOBILE: Overlay menü === */
 	@media (max-width: 768px) {
