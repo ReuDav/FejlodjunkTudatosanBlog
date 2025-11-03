@@ -5,7 +5,7 @@
     "blog": "Blog",
     "contact": "Kapcsolat"
   },
-   "routes": {
+  "routes": {
     "about": "rolunk",
     "blog": "blog",
     "contact": "kapcsolat"
@@ -13,5 +13,15 @@
   "hero": {
     "title": "Szervusz, Dávid vagyok!",
     "subtitle": "Üdvözöllek a Fejlődjünk Tudatosan oldalán! <br />Ez az én személyes blogom, naplóm és életigazságaim tárháza egyben!"
+  },
+  "contact": {
+    "title": "Kapcsolatfelvétel",
+    "subtitle": "Töltsd ki az alábbi űrlapot, és hamarosan felvesszük veled a kapcsolatot.",
+    "name": "Név",
+    "email": "Email",
+    "message": "Üzenet",
+    "send": "Küldés",
+    "success": "Az üzeneted sikeresen elküldve.",
+    "error": "Hiba történt az üzenet elküldése közben. Próbáld újra később."
   }
 }

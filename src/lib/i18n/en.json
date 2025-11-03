@@ -13,5 +13,15 @@
   "hero": {
     "title": "Hello there, I'm David!",
     "subtitle": "Welcome to the 'Develop Consciously' page! <br />This is my personal blog, diary, and a collection of my truths about life."
+  },
+   "contact": {
+    "title": "Contact Us",
+    "subtitle": "Fill out the form below and we’ll get back to you soon.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "success": "Your message was sent successfully.",
+    "error": "An error occurred while sending your message. Please try again later."
   }
 }

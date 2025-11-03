@@ -49,7 +49,7 @@
 <header>
 	<nav>
 		<a href="/{$locale}" class="logo">
-			<img src="/logo.svg" alt="logo" />
+			<img src="/logo.svg" alt="logo" height="72" />
 		</a>
 
 		<!-- Hamburger ikon (csak mobil) -->
@@ -93,7 +93,7 @@
 <style>
 	header {
 		height: 100px;
-		padding: 0.5em 1em;
+		padding: 0 1em;
 		display: flex;
 		align-items: center;
 		background: var(--background);
@@ -107,10 +107,6 @@
 		justify-content: space-between;
 		width: 100%;
 		position: relative;
-	}
-
-	.logo img {
-		height: 40px;
 	}
 
 	ul {

@@ -1,8 +1,8 @@
 <script>
 	import { setupI18n } from '$lib/i18n/i18n';
 	import { locale } from 'svelte-i18n';
-	import Header from '../Header.svelte';
 	import "../../app.css"
+	import Header from '$lib/components/Header.svelte';
 	export let data;
 
 	setupI18n(data.locale); // ⬅ kritikus, azonnal fusson le
