@@ -1,11 +1,18 @@
 <script>
 	import { onMount } from 'svelte';
-	let meals = [];
 
+	let meals = [];
 	onMount(async () => {
-		const res = await fetch("https://api.fejlodjunktudatosan.hu");
-		const json = await res.json();
-		meals = json.data; // <- itt kapod meg a listát
+		try {
+			const res = await fetch('https://api.fejlodjunktudatosan.hu/api.php', {
+				method: 'GET',
+				credentials: 'include' // CORS miatt kell, ha backend is Allow-Credentials-t küld
+			});
+			const json = await res.json();
+			meals = json.data;
+		} catch (err) {
+			console.error('API hiba:', err);
+		}
 	});
 </script>
 
