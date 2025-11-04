@@ -1,22 +1,28 @@
-<svelte:head>
-	<title>About</title>
-	<meta name="description" content="Rólam" />
-</svelte:head>
+<script>
+	import { onMount } from 'svelte';
+	let meals = [];
 
-<div class="text-column">
-	<h1>About this app</h1>
+	onMount(async () => {
+		const res = await fetch("https://api.fejlodjunktudatosan.hu");
+		const json = await res.json();
+		meals = json.data; // <- itt kapod meg a listát
+	});
+</script>
 
-	<p>
-		This is a <a href="https://svelte.dev/docs/kit">SvelteKit</a> app. You can make your own by typing
-		the following into your command line and following the prompts:
-	</p>
+<h2>Étlap</h2>
 
-	<pre>npx sv create</pre>
-
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
-	</p>
-
-</div>
+{#if meals.length}
+	<ul>
+		{#each meals as meal}
+			<li>
+				<h3>{meal.nev}</h3>
+				<p><strong>Kategória:</strong> {meal.kategoria}</p>
+				<p><strong>Kalória:</strong> {meal.kaloria} kcal</p>
+				<p><strong>Gluténmentes:</strong> {meal.glutenmentes ? 'Igen' : 'Nem'}</p>
+				<p><strong>Ár:</strong> {meal.ar} Ft</p>
+			</li>
+		{/each}
+	</ul>
+{:else}
+	<p>Betöltés...</p>
+{/if}
