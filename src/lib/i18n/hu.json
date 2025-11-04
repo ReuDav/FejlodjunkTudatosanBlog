@@ -8,7 +8,8 @@
   "routes": {
     "about": "rolam",
     "blog": "blog",
-    "contact": "kapcsolat"
+    "contact": "kapcsolat",
+    "register": "regisztracio"
   },
   "hero": {
     "title": "Szervusz, Dávid vagyok!",
@@ -23,5 +24,13 @@
     "send": "Küldés",
     "success": "Az üzeneted sikeresen elküldve.",
     "error": "Hiba történt az üzenet elküldése közben. Próbáld újra később."
+  },
+  "register": {
+    "title": "Regisztráció",
+    "username": "Felhasználónév",
+    "email": "Email",
+    "password": "Jelszó",
+    "submit": "Fiók létrehozása",
+    "success": "Sikeres regisztráció! Most már bejelentkezhetsz."
   }
 }
