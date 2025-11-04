@@ -20,7 +20,8 @@
 					'Content-Type': 'application/json',
 					Accept: 'application/json'
 				},
-				body: JSON.stringify({ user_name, email, password })
+				body: JSON.stringify({ user_name, email, password }),
+                credentials: "include"
 			});
 
 			const data = await res.json();
