@@ -21,7 +21,7 @@
 
 	onMount(async () => {
 		try {
-			const res = await fetch('https://api.fejlodjunktudatosan.hu/api.php', {
+			const res = await fetch('https://api.fejlodjunktudatosan.hu/index.php', {
 				method: 'GET',
 				credentials: 'include'
 			});
