@@ -23,7 +23,6 @@
 		try {
 			const res = await fetch('https://api.fejlodjunktudatosan.hu/index.php', {
 				method: 'GET',
-				credentials: 'include',
 				headers: {
 					'Accept': 'application/json'
 				}
