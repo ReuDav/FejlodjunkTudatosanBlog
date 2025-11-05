@@ -39,5 +39,12 @@
     "password": "Jelszó",
     "submit": "Bejelentkezés",
     "loading": "Bejelentkezés folyamatban..."
+  },
+    "blogs": {
+    "title": "📚 Blogbejegyzések",
+    "loading": "Töltés...",
+    "error": "Nem sikerült betölteni a blogokat.",
+    "read_more": "Olvasd tovább →",
+    "reading_time": "{min} perc olvasás"
   }
 }
