@@ -9,41 +9,40 @@
 	let loading = false;
 
 	async function login() {
-	error = '';
-	loading = true;
+		error = '';
+		loading = true;
 
-	try {
-		const res = await fetch('https://api.fejlodjunktudatosan.hu/api/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json'
-			},
-			body: JSON.stringify({ user, password }),
-			credentials: 'include'
-		});
+		try {
+			const res = await fetch('https://api.fejlodjunktudatosan.hu/api/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json'
+				},
+				body: JSON.stringify({ user, password }),
+				credentials: 'include'
+			});
 
-		const data = await res.json();
+			const data = await res.json();
 
-		if (!res.ok || data.status === 'error') {
-			error = data.message || 'Hiba történt';
-		} else {
-			// 🔐 JWT token mentése
-			if (data.token) {
-				localStorage.setItem('jwt_token', data.token);
+			if (!res.ok || data.status === 'error') {
+				error = data.message || 'Hiba történt';
+			} else {
+				// 🔐 JWT token mentése
+				if (data.jwt_token) {
+					localStorage.setItem('jwt_token', data.token);
+				}
+
+				const currentLocale = get(locale);
+				goto(`/${currentLocale}`);
 			}
-
-			const currentLocale = get(locale);
-			goto(`/${currentLocale}`);
+		} catch (err) {
+			error = 'Hálózati hiba';
+			console.error(err);
+		} finally {
+			loading = false;
 		}
-	} catch (err) {
-		error = 'Hálózati hiba';
-		console.error(err);
-	} finally {
-		loading = false;
 	}
-}
-
 </script>
 
 <form on:submit|preventDefault={login} class="login-form">
