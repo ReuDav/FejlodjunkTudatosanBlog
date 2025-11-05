@@ -32,5 +32,12 @@
     "password": "Password",
     "submit": "Create Account",
     "success": "Registration successful! You can now log in."
+  },
+  "login": {
+    "title": "Login",
+    "user": "Username or email",
+    "password": "Password",
+    "submit": "Log in",
+    "loading": "Logging in..."
   }
 }

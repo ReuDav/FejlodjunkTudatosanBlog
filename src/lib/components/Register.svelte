@@ -1,17 +1,19 @@
-<!-- src/lib/components/RegisterForm.svelte -->
 <script lang="ts">
 	import { _, locale } from 'svelte-i18n';
-	import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
+	import { goto } from '$app/navigation';
 
 	let user_name = '';
 	let email = '';
 	let password = '';
 	let success = false;
 	let error = '';
+	let loading = false; // 🔄 új változó
 
 	async function register() {
 		error = '';
 		success = false;
+		loading = true;
 
 		try {
 			const res = await fetch('https://api.fejlodjunktudatosan.hu/api/register', {
@@ -21,7 +23,7 @@
 					Accept: 'application/json'
 				},
 				body: JSON.stringify({ user_name, email, password }),
-                credentials: "include"
+				credentials: 'include'
 			});
 
 			const data = await res.json();
@@ -33,10 +35,18 @@
 				user_name = '';
 				email = '';
 				password = '';
+
+				// 🔁 Lokalizált átirányítás
+				const currentLocale = get(locale);
+				const loginPath = currentLocale === 'hu' ? '/hu/bejelentkezes' : '/en/login';
+
+				setTimeout(() => goto(loginPath), 1000);
 			}
 		} catch (e) {
 			error = 'Hálózati hiba';
 			console.error(e);
+		} finally {
+			loading = false; // ✅ visszakapcsoljuk a gombot
 		}
 	}
 </script>
@@ -59,7 +69,13 @@
 		<input type="password" bind:value={password} required minlength="6" />
 	</label>
 
-	<button type="submit">{$_('register.submit')}</button>
+	<button type="submit" disabled={loading}>
+		{#if loading}
+			{$_('register.loading') ?? '...'}
+		{:else}
+			{$_('register.submit')}
+		{/if}
+	</button>
 
 	{#if success}
 		<p class="success">{$_('register.success')}</p>

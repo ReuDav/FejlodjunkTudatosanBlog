@@ -32,5 +32,12 @@
     "password": "Jelszó",
     "submit": "Fiók létrehozása",
     "success": "Sikeres regisztráció! Most már bejelentkezhetsz."
+  },
+  "login": {
+    "title": "Bejelentkezés",
+    "user": "Felhasználónév vagy e-mail",
+    "password": "Jelszó",
+    "submit": "Bejelentkezés",
+    "loading": "Bejelentkezés folyamatban..."
   }
 }
