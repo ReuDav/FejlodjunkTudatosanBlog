@@ -39,5 +39,12 @@
     "password": "Password",
     "submit": "Log in",
     "loading": "Logging in..."
+  },
+  "blogs": {
+    "title": "📚 Blog Posts",
+    "loading": "Loading...",
+    "error": "Failed to load blog posts.",
+    "read_more": "Read more →",
+    "reading_time": "{min} min read"
   }
 }

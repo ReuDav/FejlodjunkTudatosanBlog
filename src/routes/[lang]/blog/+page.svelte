@@ -1,2 +1,5 @@
-<h1>blog</h1>
-<img src="/susie.gif" alt="susie">
+<script>
+	import AllBlog from '$lib/components/AllBlog.svelte';
+</script>
+
+<AllBlog />

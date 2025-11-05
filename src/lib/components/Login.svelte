@@ -13,7 +13,7 @@
 		loading = true;
 
 		try {
-			const res = await fetch('https://api.fejlodjunktudatosan.hu/api/login', {
+			const res = await fetch('https://api.fejlodjunktudatosan.hu/api/auth/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
