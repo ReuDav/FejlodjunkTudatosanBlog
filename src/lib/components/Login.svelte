@@ -30,7 +30,7 @@
 			} else {
 				// 🔐 JWT token mentése
 				if (data.jwt_token) {
-					localStorage.setItem('jwt_token', data.token);
+					localStorage.setItem('jwt_token', data.jwt_token);
 				}
 
 				const currentLocale = get(locale);
