@@ -1,37 +1,40 @@
-<script>
+<script lang="ts">
 	import { _, locale } from 'svelte-i18n';
 	import emailjs from 'emailjs-com';
 
 	let name = '';
 	let email = '';
 	let message = '';
-	let status = '';
+	let status: 'success' | 'error' | '' = '';
+	let sending = false;
 
+	// 🔑 Saját EmailJS kulcsok
 	const SERVICE_ID = 'service_ob75l2r';
 	const TEMPLATE_ID = 'template_cegvjjq';
 	const PUBLIC_KEY = 't8X0J3ziyf5y9v3LB';
-	async function handleSubmit(e) {
+
+	async function handleSubmit(e: Event) {
 		e.preventDefault();
 		status = '';
+		sending = true;
 
 		try {
-			const result = await emailjs.send(
+			await emailjs.send(
 				SERVICE_ID,
 				TEMPLATE_ID,
-				{
-					name,
-					email,
-					message
-				},
+				{ name, email, message },
 				PUBLIC_KEY
 			);
 
-			console.log('SUCCESS!', result.text);
 			status = 'success';
-			name = email = message = '';
-		} catch (error) {
-			console.error('FAILED...', error);
+			name = '';
+			email = '';
+			message = '';
+		} catch (err) {
+			console.error('EmailJS error:', err);
 			status = 'error';
+		} finally {
+			sending = false;
 		}
 	}
 </script>
@@ -56,7 +59,9 @@
 			<textarea bind:value={message} rows="5" required></textarea>
 		</label>
 
-		<button type="submit">{$_('contact.send')}</button>
+		<button type="submit" disabled={sending}>
+			{sending ? $_('contact.sending') : $_('contact.send')}
+		</button>
 
 		{#if status === 'success'}
 			<p class="success">{$_('contact.success')}</p>
@@ -102,7 +107,12 @@
 		align-self: flex-start;
 	}
 
-	button:hover {
+	button:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	button:hover:enabled {
 		background-color: var(--color-theme-2);
 	}
 
@@ -110,6 +120,7 @@
 		color: green;
 		font-weight: 600;
 	}
+
 	.error {
 		color: red;
 		font-weight: 600;

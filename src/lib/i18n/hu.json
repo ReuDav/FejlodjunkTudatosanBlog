@@ -17,13 +17,14 @@
   },
   "contact": {
     "title": "Kapcsolatfelvétel",
-    "subtitle": "Töltsd ki az alábbi űrlapot, és hamarosan felvesszük veled a kapcsolatot.",
+    "subtitle": "Írj nekünk bátran bármilyen kérdésed van!",
     "name": "Név",
     "email": "Email",
     "message": "Üzenet",
     "send": "Küldés",
-    "success": "Az üzeneted sikeresen elküldve.",
-    "error": "Hiba történt az üzenet elküldése közben. Próbáld újra később."
+    "sending": "Küldés...",
+    "success": "Üzenetedet sikeresen elküldtük!",
+    "error": "Hiba történt az üzenet küldésekor."
   },
   "register": {
     "title": "Regisztráció",
@@ -40,7 +41,7 @@
     "submit": "Bejelentkezés",
     "loading": "Bejelentkezés folyamatban..."
   },
-    "blogs": {
+  "blogs": {
     "title": "📚 Blogbejegyzések",
     "loading": "Töltés...",
     "error": "Nem sikerült betölteni a blogokat.",

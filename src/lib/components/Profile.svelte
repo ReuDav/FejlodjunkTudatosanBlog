@@ -10,7 +10,7 @@
 	let uploadMessage = '';
 	let uploading = false;
 
-	const DEFAULT_AVATAR = 'https://fejlodjunktudatosan.hu/images/default_avatar.webp';
+	const DEFAULT_AVATAR = 'https://api.fejlodjunktudatosan.hu/images/default_avatar.webp';
 
 	onMount(async () => {
 		const token = localStorage.getItem('jwt_token');
