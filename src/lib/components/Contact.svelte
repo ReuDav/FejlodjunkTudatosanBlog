@@ -6,9 +6,9 @@
 	let email = '';
 	let message = '';
 	let status: 'success' | 'error' | '' = '';
+	let errorMessage = '';
 	let sending = false;
 
-	// 🔑 Saját EmailJS kulcsok
 	const SERVICE_ID = 'service_ob75l2r';
 	const TEMPLATE_ID = 'template_cegvjjq';
 	const PUBLIC_KEY = 't8X0J3ziyf5y9v3LB';
@@ -16,9 +16,27 @@
 	async function handleSubmit(e: Event) {
 		e.preventDefault();
 		status = '';
+		errorMessage = '';
 		sending = true;
 
 		try {
+			// 1️⃣ Először adatbázisba mentjük az API-n keresztül
+			const res = await fetch('https://api.fejlodjunktudatosan.hu/api/contact/send', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json'
+				},
+				body: JSON.stringify({ name, email, message })
+			});
+
+			const db = await res.json();
+
+			if (!res.ok || db.status !== 'success') {
+				throw new Error(db.message || 'Adatbázis hiba történt.');
+			}
+
+			// 2️⃣ Ezután küldjük el az emailt is EmailJS-sel
 			await emailjs.send(
 				SERVICE_ID,
 				TEMPLATE_ID,
@@ -31,8 +49,9 @@
 			email = '';
 			message = '';
 		} catch (err) {
-			console.error('EmailJS error:', err);
+			console.error('Küldési hiba:', err);
 			status = 'error';
+			errorMessage = err.message || 'Ismeretlen hiba történt.';
 		} finally {
 			sending = false;
 		}
