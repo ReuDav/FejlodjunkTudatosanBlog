@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { locale, _ } from 'svelte-i18n';
+	import { page } from '$app/stores';
 	import { get } from 'svelte/store';
+	import { DirectionalLight } from 'three';
 
 	type BlogPost = {
 		id: number;
@@ -20,11 +22,16 @@
 	let error = '';
 	let search = '';
 
-	onMount(async () => {
-		const currentLocale = get(locale);
+	$: currentLocale = $locale;
 
+	// ✅ FETCH, minden locale változáskor
+	$: fetchBlogs(currentLocale);
+
+	async function fetchBlogs(locale: string) {
+		loading = true;
+		error = '';
 		try {
-			const res = await fetch(`https://api.fejlodjunktudatosan.hu/api/blogs/all?locale=${currentLocale}`);
+			const res = await fetch(`https://api.fejlodjunktudatosan.hu/api/blogs/all?locale=${locale}`);
 			const json = await res.json();
 
 			if (json.status === 'success') {
@@ -39,9 +46,8 @@
 		} finally {
 			loading = false;
 		}
-	});
-
-	// 🔍 Keresés
+	}
+	// 🔍 Keresés alapján szűrés (reaktív)
 	$: filtered = posts.filter((post) => {
 		const q = search.toLowerCase();
 		return (
@@ -58,7 +64,7 @@
 	<input
 		type="text"
 		class="search-box"
-		placeholder="{$_('blogs.placeholder')}"
+		placeholder={$_('blogs.placeholder')}
 		bind:value={search}
 	/>
 
@@ -76,7 +82,7 @@
 					<div class="card-content">
 						<h2>{post.title}</h2>
 						<p class="meta">
-							🕒 {$_('blogs.reading_time', { min: post.read_time })}
+							🕒 {$_('blogs.reading_time').replace('{min}', post.read_time )} 
 						</p>
 
 						<div class="tags">
@@ -85,7 +91,7 @@
 							{/each}
 						</div>
 
-						<a href={`/${get(locale)}/blog/${post.slug}`} class="read-more">
+						<a href={`/${$locale}/blog/${post.slug}`} class="read-more">
 							{$_('blogs.read_more')}
 						</a>
 					</div>
