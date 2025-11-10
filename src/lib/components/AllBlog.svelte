@@ -20,8 +20,6 @@
 	let error = '';
 	let search = '';
 
-	const $_ = get(_);
-
 	onMount(async () => {
 		const currentLocale = get(locale);
 
