@@ -91,6 +91,10 @@
 </section>
 
 <style>
+	h1, p {
+		text-align: center;
+	}
+
 	form {
 		display: flex;
 		flex-direction: column;
