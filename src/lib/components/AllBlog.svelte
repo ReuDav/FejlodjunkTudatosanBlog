@@ -20,6 +20,8 @@
 	let error = '';
 	let search = '';
 
+	const $_ = get(_);
+
 	onMount(async () => {
 		const currentLocale = get(locale);
 
@@ -57,36 +59,41 @@
 
 	<input
 		type="text"
-		placeholder="Keresés cím, tartalom vagy címke alapján..."
-		bind:value={search}
 		class="search-box"
+		placeholder="{$_('blogs.placeholder')}"
+		bind:value={search}
 	/>
 
 	{#if loading}
 		<p>{$_('blogs.loading')}</p>
 	{:else if error}
 		<p class="error">{error}</p>
+	{:else if filtered.length === 0}
+		<p>{$_('blogs.no_results') || 'Nincs találat a keresésre.'}</p>
 	{:else}
-		{#if filtered.length === 0}
-			<p>Nincs találat a keresésre.</p>
-		{:else}
-			<div class="grid">
-				{#each filtered as post (post.id)}
-					<article class="blog-card">
-						<img src={post.cover_image} alt={post.title} />
-						<div class="card-content">
-							<h2>{post.title}</h2>
-							<p class="meta">
-								🕒 {$_('blogs.reading_time', { min: post.read_time })} • 🏷️ {post.tags.join(', ')}
-							</p>
-							<a href={`/${get(locale)}/blog/${post.slug}`} class="read-more">
-								{$_('blogs.read_more')}
-							</a>
+		<div class="grid">
+			{#each filtered as post (post.id)}
+				<article class="blog-card">
+					<img src={post.cover_image} alt={post.title} />
+					<div class="card-content">
+						<h2>{post.title}</h2>
+						<p class="meta">
+							🕒 {$_('blogs.reading_time', { min: post.read_time })}
+						</p>
+
+						<div class="tags">
+							{#each post.tags as tag}
+								<span class="tag">#{tag}</span>
+							{/each}
 						</div>
-					</article>
-				{/each}
-			</div>
-		{/if}
+
+						<a href={`/${get(locale)}/blog/${post.slug}`} class="read-more">
+							{$_('blogs.read_more')}
+						</a>
+					</div>
+				</article>
+			{/each}
+		</div>
 	{/if}
 </section>
 
@@ -95,6 +102,11 @@
 		max-width: 1200px;
 		margin: 0 auto;
 		padding: 2rem;
+	}
+
+	h1 {
+		text-align: center;
+		margin-bottom: 2rem;
 	}
 
 	.search-box {
@@ -110,11 +122,14 @@
 
 	.grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		gap: 2rem;
+		justify-items: center;
 	}
 
 	.blog-card {
+		width: 100%;
+		max-width: 360px;
 		border: 1px solid #ddd;
 		border-radius: 8px;
 		overflow: hidden;
@@ -129,7 +144,7 @@
 		transform: scale(1.01);
 	}
 
-	img {
+	.blog-card img {
 		width: 100%;
 		height: 200px;
 		object-fit: cover;
@@ -137,20 +152,38 @@
 
 	.card-content {
 		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 	}
 
 	h2 {
-		margin-bottom: 0.5rem;
 		font-size: 1.2rem;
+		margin: 0;
 	}
 
 	.meta {
 		font-size: 0.9rem;
 		color: #777;
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
 		margin-bottom: 1rem;
 	}
 
+	.tag {
+		background-color: #f0f0f0;
+		color: #333;
+		padding: 0.2rem 0.6rem;
+		border-radius: 12px;
+		font-size: 0.85rem;
+	}
+
 	.read-more {
+		margin-top: auto;
 		color: var(--color-theme-1, #007bff);
 		font-weight: bold;
 		text-decoration: none;

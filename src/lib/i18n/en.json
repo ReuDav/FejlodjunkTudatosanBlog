@@ -42,6 +42,7 @@
   },
   "blogs": {
     "title": "📚 Blog Posts",
+    "placeholder": "Search here for specific blog posts...",
     "loading": "Loading...",
     "error": "Failed to load blog posts.",
     "read_more": "Read more →",

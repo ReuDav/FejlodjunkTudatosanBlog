@@ -46,6 +46,8 @@
     "loading": "Töltés...",
     "error": "Nem sikerült betölteni a blogokat.",
     "read_more": "Olvasd tovább →",
-    "reading_time": "{min} perc olvasás"
+    "reading_time": "{min} perc olvasás",
+    "placeholder": "Keresés cím, tartalom vagy címke alapján...",
+    "no_results": "Nincs találat a keresésre."
   }
 }
