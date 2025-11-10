@@ -77,25 +77,28 @@
 	{:else}
 		<div class="grid">
 			{#each filtered as post (post.id)}
+				<a href={`/${$locale}/blog/${post.slug}`} >
 				<article class="blog-card">
-					<img src={post.cover_image} alt={post.title} />
-					<div class="card-content">
-						<h2>{post.title}</h2>
-						<p class="meta">
-							🕒 {$_('blogs.reading_time').replace('{min}', post.read_time )} 
-						</p>
+						<img src={post.cover_image} alt={post.title} />
+						<div class="card-content">
+							<h2>{post.title}</h2>
+							<p class="meta">
+								🕒 {$_('blogs.reading_time').replace('{min}', post.read_time )} 
+							</p>
 
-						<div class="tags">
-							{#each post.tags as tag}
-								<span class="tag">#{tag}</span>
-							{/each}
+							<div class="tags">
+								{#each post.tags as tag}
+									<span class="tag">#{tag}</span>
+								{/each}
+							</div>
+
+							<button class="read-more">
+								{$_('blogs.read_more')}
+							</button>
+							
 						</div>
-
-						<a href={`/${$locale}/blog/${post.slug}`} class="read-more">
-							{$_('blogs.read_more')}
-						</a>
-					</div>
-				</article>
+					</article>
+				</a>
 			{/each}
 		</div>
 	{/if}
