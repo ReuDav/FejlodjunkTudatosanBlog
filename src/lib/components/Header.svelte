@@ -71,18 +71,6 @@
 		</div>
 
 		<ul class="menu" class:is-open={isOpen}>
-			<!-- Login/Register ikonok -->
-			<li>
-				<a href="/{$locale}/login" aria-label="Login">
-					<FontAwesomeIcon icon={faSignInAlt} />
-				</a>
-			</li>
-			<li>
-				<a href="/{$locale}/register" aria-label="Register">
-					<FontAwesomeIcon icon={faUserPlus} />
-				</a>
-			</li>
-
 			<!-- Home -->
 			<li>
 				<a href="/{$locale}">{$_('nav.home')}</a>
@@ -96,7 +84,17 @@
 					</a>
 				</li>
 			{/each}
-
+			<!-- Login/Register ikonok -->
+			<li>
+				<a href="/{$locale}/login" aria-label="Login">
+					<FontAwesomeIcon icon={faSignInAlt} />
+				</a>
+			</li>
+			<li>
+				<a href="/{$locale}/register" aria-label="Register">
+					<FontAwesomeIcon icon={faUserPlus} />
+				</a>
+			</li>
 			<!-- Nyelvváltó -->
 			<li>
 				<select
