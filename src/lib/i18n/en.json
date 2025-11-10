@@ -9,7 +9,9 @@
     "about": "about",
     "blog": "blog",
     "contact": "contact",
-    "register": "register"
+    "register": "register",
+    "login": "register",
+    "profile": "profile"
   },
   "hero": {
     "title": "Hello there, I'm David!",

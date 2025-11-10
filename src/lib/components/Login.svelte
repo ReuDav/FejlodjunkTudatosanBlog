@@ -28,13 +28,13 @@
 			if (!res.ok || data.status === 'error') {
 				error = data.message || 'Hiba történt';
 			} else {
-				// 🔐 JWT token mentése
 				if (data.jwt_token) {
 					localStorage.setItem('jwt_token', data.jwt_token);
 				}
 
 				const currentLocale = get(locale);
-				goto(`/${currentLocale}`);
+				const profilePath = $_(`routes.profile`);
+				goto(`/${currentLocale}/${profilePath}`);
 			}
 		} catch (err) {
 			error = 'Hálózati hiba';
@@ -45,7 +45,7 @@
 	}
 </script>
 
-<form on:submit|preventDefault={login} class="login-form">
+<form on:submit|preventDefault={login} class="auth-form">
 	<h2>{$_('login.title')}</h2>
 
 	<label>
@@ -72,7 +72,7 @@
 </form>
 
 <style>
-	.login-form {
+	.auth-form {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;

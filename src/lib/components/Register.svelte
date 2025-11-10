@@ -8,7 +8,7 @@
 	let password = '';
 	let success = false;
 	let error = '';
-	let loading = false; // 🔄 új változó
+	let loading = false;
 
 	async function register() {
 		error = '';
@@ -36,22 +36,20 @@
 				email = '';
 				password = '';
 
-				// 🔁 Lokalizált átirányítás
 				const currentLocale = get(locale);
-				const loginPath = currentLocale === 'hu' ? '/hu/bejelentkezes' : '/en/login';
-
-				setTimeout(() => goto(loginPath), 1000);
+				const loginPath = $_(`routes.login`);
+				setTimeout(() => goto(`/${currentLocale}/${loginPath}`), 1000);
 			}
 		} catch (e) {
 			error = 'Hálózati hiba';
 			console.error(e);
 		} finally {
-			loading = false; // ✅ visszakapcsoljuk a gombot
+			loading = false;
 		}
 	}
 </script>
 
-<form on:submit|preventDefault={register} class="register-form">
+<form on:submit|preventDefault={register} class="auth-form">
 	<h2>{$_('register.title')}</h2>
 
 	<label>
@@ -85,12 +83,22 @@
 </form>
 
 <style>
-	.register-form {
+	.auth-form {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
 		max-width: 400px;
 		margin: 2rem auto;
+		padding: 2rem;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+		background-color: #fafafa;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	}
+
+	h2 {
+		margin-bottom: 1rem;
+		text-align: center;
 	}
 
 	label {
@@ -102,6 +110,8 @@
 	input {
 		padding: 0.5rem;
 		font-size: 1rem;
+		border: 1px solid #ccc;
+		border-radius: 4px;
 	}
 
 	button {
@@ -109,6 +119,7 @@
 		background: var(--color-theme-1, #007bff);
 		color: white;
 		border: none;
+		border-radius: 4px;
 		cursor: pointer;
 		font-weight: bold;
 	}
@@ -119,9 +130,11 @@
 
 	.success {
 		color: green;
+		text-align: center;
 	}
 
 	.error {
 		color: red;
+		text-align: center;
 	}
 </style>

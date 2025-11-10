@@ -9,7 +9,9 @@
     "about": "rolam",
     "blog": "blog",
     "contact": "kapcsolat",
-    "register": "regisztracio"
+    "register": "regisztracio",
+    "login": "bejelentkezes",
+    "profile": "profil"
   },
   "hero": {
     "title": "Szervusz, Dávid vagyok!",
