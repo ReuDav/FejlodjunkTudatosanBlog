@@ -40,6 +40,7 @@
     "user": "Username or email",
     "password": "Password",
     "submit": "Log in",
+    "remember": "Keep me logged in",
     "loading": "Logging in..."
   },
   "blogs": {

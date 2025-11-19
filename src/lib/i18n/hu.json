@@ -41,6 +41,7 @@
     "user": "Felhasználónév vagy e-mail",
     "password": "Jelszó",
     "submit": "Bejelentkezés",
+    "remember": "Bejelentkezve maradok",
     "loading": "Bejelentkezés folyamatban..."
   },
   "blogs": {

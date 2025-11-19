@@ -9,6 +9,23 @@
 	let previewUrl: string | null = null;
 	let uploadMessage = '';
 	let uploading = false;
+	let showConfirmDialog = false;
+	let pendingUpload = false;
+
+	function handleFileChange(event: Event) {
+		const input = event.target as HTMLInputElement;
+		if (input.files && input.files.length > 0) {
+			selectedFile = input.files[0];
+			previewUrl = URL.createObjectURL(selectedFile);
+			// Kérdés: Biztos, hogy feltöltöd?
+			showConfirmDialog = true;
+		}
+	}
+
+	async function confirmUpload() {
+		showConfirmDialog = false;
+		await uploadProfileImage();
+	}
 
 	const DEFAULT_AVATAR = 'https://api.fejlodjunktudatosan.hu/images/default_avatar.webp';
 
@@ -42,15 +59,6 @@
 			loading = false;
 		}
 	});
-
-	// ✅ Kép előnézet generálása
-	function handleFileChange(event: Event) {
-		const input = event.target as HTMLInputElement;
-		if (input.files && input.files.length > 0) {
-			selectedFile = input.files[0];
-			previewUrl = URL.createObjectURL(selectedFile);
-		}
-	}
 
 	// ✅ Kép feltöltése az API-ra
 	async function uploadProfileImage() {

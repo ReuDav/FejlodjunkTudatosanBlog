@@ -7,6 +7,7 @@
 	let password = '';
 	let error = '';
 	let loading = false;
+	let rememberMe = false;
 
 	async function login() {
 		error = '';
@@ -28,13 +29,24 @@
 			if (!res.ok || data.status === 'error') {
 				error = data.message || 'Hiba történt';
 			} else {
+				// 🔐 Token mentése (30 napra, ha kell)
 				if (data.jwt_token) {
-					localStorage.setItem('jwt_token', data.jwt_token);
+					if (rememberMe) {
+						localStorage.setItem('jwt_token', data.jwt_token);
+					} else {
+						sessionStorage.setItem('jwt_token', data.jwt_token);
+					}
 				}
 
 				const currentLocale = get(locale);
-				const profilePath = $_(`routes.profile`);
-				goto(`/${currentLocale}/${profilePath}`);
+				const userRole = data.user?.role || data.role || 'user';
+
+				const path =
+					userRole === 'admin'
+						? `/${currentLocale}/admin`
+						: `/${currentLocale}/${$_('routes.profile')}`;
+
+				goto(path);
 			}
 		} catch (err) {
 			error = 'Hálózati hiba';
@@ -58,6 +70,11 @@
 		<input type="password" bind:value={password} required minlength="6" />
 	</label>
 
+	<label class="remember-me">
+		<input type="checkbox" bind:checked={rememberMe} />
+		{$_('login.remember')}
+	</label>
+
 	<button type="submit" disabled={loading}>
 		{#if loading}
 			{$_('login.loading')}
@@ -72,6 +89,15 @@
 </form>
 
 <style>
+	:root {
+		--color-theme-1: #ff7a00;
+	}
+
+	input[type='checkbox'] {
+		accent-color: var(--color-theme-1, #ff7a00);
+		outline: none;
+	}
+
 	.auth-form {
 		display: flex;
 		flex-direction: column;
@@ -96,25 +122,34 @@
 		font-weight: bold;
 	}
 
-	input {
+	input[type='text'],
+	input[type='password'] {
 		padding: 0.5rem;
 		font-size: 1rem;
 		border: 1px solid #ccc;
 		border-radius: 4px;
 	}
 
+	.remember-me {
+		flex-direction: row;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: normal;
+	}
+
 	button {
 		padding: 0.75rem;
-		background: var(--color-theme-1, #007bff);
+		background: var(--color-theme-1, #ff7a00);
 		color: white;
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
 		font-weight: bold;
+		transition: background 0.2s ease;
 	}
 
 	button:hover {
-		background: #0056b3;
+		background: #e86d00;
 	}
 
 	.error {
