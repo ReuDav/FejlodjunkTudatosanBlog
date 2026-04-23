@@ -50,5 +50,24 @@
     "error": "Failed to load blog posts.",
     "read_more": "Read more →",
     "reading_time": "{min} min read"
+  },
+  "admin": {
+    "users": {
+      "username": "Username",
+      "email": "Email address",
+      "role": "Role",
+      "roles": {
+        "user": "User",
+        "admin": "Admin"
+      },
+      "registered": "Registered",
+      "actions": "Actions",
+      "edit": "Edit user's data",
+      "labels": {
+        "username": "Username",
+        "emailAddress": "Email address",
+        "userRole": "Users' role"
+      }
+    }
   }
 }

@@ -1,5 +1,9 @@
 test-results
 node_modules
+.bun
+.android
+.app-store
+.arduinoIDE
 
 # Output
 .output

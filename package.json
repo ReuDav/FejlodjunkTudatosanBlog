@@ -46,6 +46,7 @@
 				"emailjs-com": "^3.2.0",
 				"marked": "^17.0.0",
 				"svelte-hamburgers": "^5.0.0",
+				"svelte-highlight": "^7.9.0",
 				"svelte-i18n": "^4.0.1",
 				"sveltekit-i18n": "^2.4.2",
 				"three": "^0.180.0"

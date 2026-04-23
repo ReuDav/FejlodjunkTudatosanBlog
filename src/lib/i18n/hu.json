@@ -52,5 +52,24 @@
     "reading_time": "{min} perc olvasás",
     "placeholder": "Keresés cím, tartalom vagy címke alapján...",
     "no_results": "Nincs találat a keresésre."
+  },
+  "admin": {
+    "users": {
+      "username": "Fehasználónév",
+      "email": "Email cím",
+      "role": "Szerepkör",
+       "roles": {
+        "user": "Felhasználó",
+        "admin": "Admin"
+      },
+      "registered": "Regisztrált",
+      "actions": "Műveletek",
+      "edit": "Felhasználó szerkesztése",
+      "labels": {
+        "username": "Fehasználónév",
+        "emailAddress": "Email cím",
+        "userRole": "Szerepkör"
+      }
+    }
   }
 }
