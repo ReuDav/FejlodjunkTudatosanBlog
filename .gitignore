@@ -29,3 +29,5 @@ vite.config.ts.timestamp-*
 
 .vercel
 .unlighthouse
+.vercel
+.env*.local

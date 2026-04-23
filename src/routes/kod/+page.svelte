@@ -406,7 +406,7 @@ def gyors_rendezes(sorozat, also, felso):
 				<h2>{selectedItem.label}</h2>
 				<p class="function-name">{selectedItem.fn}</p>
 
-				<Highlight language={python} code={selectedItem.code} style={"font-size: 2rem;"}/>
+				<Highlight language={python} code={selectedItem.code}/>
 				<button class="back-button" on:click={closeDialog}> Vissza </button>
 			</div>
 		{/if}
