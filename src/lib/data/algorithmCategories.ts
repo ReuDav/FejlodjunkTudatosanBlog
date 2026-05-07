@@ -59,13 +59,13 @@ def szamok_szorzata(szamok):
 
 
 def kettoveloszthatok(szamok):
-    eredmeny = []
+    parosak = []
 
     for szam in szamok:
         if szam % 2 == 0:
-            eredmeny.append(szam)
+            parosak.append(szam)
 
-    return eredmeny`
+    return parosak`
 					},
 					{
 						language: 'csharp',
@@ -110,17 +110,17 @@ static int SzamokSzorzata(int[] szamok)
 
 static List<int> KettovelOszthatok(int[] szamok)
 {
-    List<int> eredmeny = new List<int>();
+    List<int> parosak = new List<int>();
 
     foreach (int szam in szamok)
     {
         if (szam % 2 == 0)
         {
-            eredmeny.Add(szam);
+            parosak.Add(szam);
         }
     }
 
-    return eredmeny;
+    return parosak;
 }`
 					}
 				]
@@ -132,24 +132,24 @@ static List<int> KettovelOszthatok(int[] szamok)
 				codes: [
 					{
 						language: 'python',
-						code: `def kivalogatas(szamok, hatarertek):
+						code: `def kivalogatas(szamok, hatar):
     eredmeny = []
 
     for szam in szamok:
-        if szam < hatarertek:
+        if szam < hatar:
             eredmeny.append(szam)
 
     return eredmeny`
 					},
 					{
 						language: 'csharp',
-						code: `static List<int> Kivalogatas(int[] szamok, int hatarertek)
+						code: `static List<int> Kivalogatas(int[] szamok, int hatar)
 {
     List<int> eredmeny = new List<int>();
 
     foreach (int szam in szamok)
     {
-        if (szam < hatarertek)
+        if (szam < hatar)
         {
             eredmeny.Add(szam);
         }
@@ -168,25 +168,50 @@ static List<int> KettovelOszthatok(int[] szamok)
 					{
 						language: 'python',
 						code: `def megszamlalas(szamok):
-    darab = 0
+    db = 0
 
     for szam in szamok:
-        darab += 1
+        db += 1
 
-    return darab`
+    return db
+
+
+def parosok_szama(szamok):
+    db = 0
+
+    for szam in szamok:
+        if szam % 2 == 0:
+            db += 1
+
+    return db`
 					},
 					{
 						language: 'csharp',
 						code: `static int Megszamlalas(int[] szamok)
 {
-    int darab = 0;
+    int db = 0;
 
     foreach (int szam in szamok)
     {
-        darab++;
+        db++;
     }
 
-    return darab;
+    return db;
+}
+
+static int ParosokSzama(int[] szamok)
+{
+    int db = 0;
+
+    foreach (int szam in szamok)
+    {
+        if (szam % 2 == 0)
+        {
+            db++;
+        }
+    }
+
+    return db;
 }`
 					}
 				]
@@ -229,20 +254,20 @@ static List<int> KettovelOszthatok(int[] szamok)
 				codes: [
 					{
 						language: 'python',
-						code: `def kivalasztas(szoveg, keresett_betu):
+						code: `def kivalasztas(szoveg, betu):
     for index in range(len(szoveg)):
-        if szoveg[index] == keresett_betu:
+        if szoveg[index] == betu:
             return index
 
     return -1`
 					},
 					{
 						language: 'csharp',
-						code: `static int Kivalasztas(string szoveg, char keresettBetu)
+						code: `static int Kivalasztas(string szoveg, char betu)
 {
     for (int i = 0; i < szoveg.Length; i++)
     {
-        if (szoveg[i] == keresettBetu)
+        if (szoveg[i] == betu)
         {
             return i;
         }
@@ -304,29 +329,29 @@ static List<int> KettovelOszthatok(int[] szamok)
 					{
 						language: 'python',
 						code: `def metszet(lista1, lista2):
-    eredmeny = []
+    kozos = []
 
     for elem in lista1:
-        if elem in lista2 and elem not in eredmeny:
-            eredmeny.append(elem)
+        if elem in lista2 and elem not in kozos:
+            kozos.append(elem)
 
-    return eredmeny`
+    return kozos`
 					},
 					{
 						language: 'csharp',
 						code: `static List<int> Metszet(int[] lista1, int[] lista2)
 {
-    List<int> eredmeny = new List<int>();
+    List<int> kozos = new List<int>();
 
     foreach (int elem in lista1)
     {
-        if (lista2.Contains(elem) && !eredmeny.Contains(elem))
+        if (lista2.Contains(elem) && !kozos.Contains(elem))
         {
-            eredmeny.Add(elem);
+            kozos.Add(elem);
         }
     }
 
-    return eredmeny;
+    return kozos;
 }`
 					}
 				]
@@ -642,13 +667,13 @@ static List<int> KettovelOszthatok(int[] szamok)
 
 def ugro_kereses(lista, keresett):
     n = len(lista)
-    blokk_meret = int(math.sqrt(n))
+    lepes = int(math.sqrt(n))
 
-    for blokk_kezdete in range(0, n, blokk_meret):
-        blokk_vege = min(blokk_kezdete + blokk_meret, n)
+    for bal in range(0, n, lepes):
+        jobb = min(bal + lepes, n)
 
-        if lista[blokk_vege - 1] >= keresett:
-            for index in range(blokk_kezdete, blokk_vege):
+        if lista[jobb - 1] >= keresett:
+            for index in range(bal, jobb):
                 if lista[index] == keresett:
                     return index
 
@@ -661,15 +686,15 @@ def ugro_kereses(lista, keresett):
 						code: `static int UgroKereses(int[] lista, int keresett)
 {
     int n = lista.Length;
-    int blokkMeret = (int)Math.Sqrt(n);
+    int lepes = (int)Math.Sqrt(n);
 
-    for (int blokkKezdete = 0; blokkKezdete < n; blokkKezdete += blokkMeret)
+    for (int bal = 0; bal < n; bal += lepes)
     {
-        int blokkVege = Math.Min(blokkKezdete + blokkMeret, n);
+        int jobb = Math.Min(bal + lepes, n);
 
-        if (lista[blokkVege - 1] >= keresett)
+        if (lista[jobb - 1] >= keresett)
         {
-            for (int i = blokkKezdete; i < blokkVege; i++)
+            for (int i = bal; i < jobb; i++)
             {
                 if (lista[i] == keresett)
                 {
@@ -701,14 +726,14 @@ def ugro_kereses(lista, keresett):
 						language: 'python',
 						code: `def beszuro_rendezes(lista):
     for i in range(1, len(lista)):
-        aktualis = lista[i]
+        kulcs = lista[i]
         j = i - 1
 
-        while j >= 0 and lista[j] > aktualis:
+        while j >= 0 and lista[j] > kulcs:
             lista[j + 1] = lista[j]
             j -= 1
 
-        lista[j + 1] = aktualis
+        lista[j + 1] = kulcs
 
     return lista`
 					},
@@ -718,16 +743,16 @@ def ugro_kereses(lista, keresett):
 {
     for (int i = 1; i < lista.Length; i++)
     {
-        int aktualis = lista[i];
+        int kulcs = lista[i];
         int j = i - 1;
 
-        while (j >= 0 && lista[j] > aktualis)
+        while (j >= 0 && lista[j] > kulcs)
         {
             lista[j + 1] = lista[j];
             j--;
         }
 
-        lista[j + 1] = aktualis;
+        lista[j + 1] = kulcs;
     }
 
     return lista;
@@ -772,9 +797,9 @@ def ugro_kereses(lista, keresett):
         {
             if (lista[j] > lista[j + 1])
             {
-                int ideiglenes = lista[j];
+                int csere = lista[j];
                 lista[j] = lista[j + 1];
-                lista[j + 1] = ideiglenes;
+                lista[j + 1] = csere;
 
                 voltCsere = true;
             }
@@ -802,13 +827,13 @@ def ugro_kereses(lista, keresett):
     n = len(lista)
 
     for i in range(n):
-        minimum_index = i
+        min_index = i
 
         for j in range(i + 1, n):
-            if lista[j] < lista[minimum_index]:
-                minimum_index = j
+            if lista[j] < lista[min_index]:
+                min_index = j
 
-        lista[i], lista[minimum_index] = lista[minimum_index], lista[i]
+        lista[i], lista[min_index] = lista[min_index], lista[i]
 
     return lista`
 					},
@@ -820,19 +845,19 @@ def ugro_kereses(lista, keresett):
 
     for (int i = 0; i < n; i++)
     {
-        int minimumIndex = i;
+        int minIndex = i;
 
         for (int j = i + 1; j < n; j++)
         {
-            if (lista[j] < lista[minimumIndex])
+            if (lista[j] < lista[minIndex])
             {
-                minimumIndex = j;
+                minIndex = j;
             }
         }
 
-        int ideiglenes = lista[i];
-        lista[i] = lista[minimumIndex];
-        lista[minimumIndex] = ideiglenes;
+        int csere = lista[i];
+        lista[i] = lista[minIndex];
+        lista[minIndex] = csere;
     }
 
     return lista;
@@ -880,9 +905,9 @@ def ugro_kereses(lista, keresett):
         {
             if (lista[i] > lista[i + res])
             {
-                int ideiglenes = lista[i];
+                int csere = lista[i];
                 lista[i] = lista[i + res];
-                lista[i + res] = ideiglenes;
+                lista[i + res] = csere;
 
                 voltCsere = true;
             }
@@ -945,9 +970,9 @@ def ugro_kereses(lista, keresett):
         {
             if (lista[i] > lista[i + 1])
             {
-                int ideiglenes = lista[i];
+                int csere = lista[i];
                 lista[i] = lista[i + 1];
-                lista[i + 1] = ideiglenes;
+                lista[i + 1] = csere;
 
                 voltCsere = true;
             }
@@ -965,9 +990,9 @@ def ugro_kereses(lista, keresett):
         {
             if (lista[i] > lista[i + 1])
             {
-                int ideiglenes = lista[i];
+                int csere = lista[i];
                 lista[i] = lista[i + 1];
-                lista[i + 1] = ideiglenes;
+                lista[i + 1] = csere;
 
                 voltCsere = true;
             }
@@ -990,16 +1015,16 @@ def ugro_kereses(lista, keresett):
 						language: 'python',
 						code: `def particionalas(lista, also, felso):
     pivot = lista[felso]
-    kisebb_index = also - 1
+    kisebb = also - 1
 
-    for aktualis_index in range(also, felso):
-        if lista[aktualis_index] < pivot:
-            kisebb_index += 1
-            lista[kisebb_index], lista[aktualis_index] = lista[aktualis_index], lista[kisebb_index]
+    for i in range(also, felso):
+        if lista[i] < pivot:
+            kisebb += 1
+            lista[kisebb], lista[i] = lista[i], lista[kisebb]
 
-    lista[kisebb_index + 1], lista[felso] = lista[felso], lista[kisebb_index + 1]
+    lista[kisebb + 1], lista[felso] = lista[felso], lista[kisebb + 1]
 
-    return kisebb_index + 1
+    return kisebb + 1
 
 
 def gyors_rendezes(lista, also, felso):
@@ -1016,25 +1041,25 @@ def gyors_rendezes(lista, also, felso):
 						code: `static int Particionalas(int[] lista, int also, int felso)
 {
     int pivot = lista[felso];
-    int kisebbIndex = also - 1;
+    int kisebb = also - 1;
 
-    for (int aktualisIndex = also; aktualisIndex < felso; aktualisIndex++)
+    for (int i = also; i < felso; i++)
     {
-        if (lista[aktualisIndex] < pivot)
+        if (lista[i] < pivot)
         {
-            kisebbIndex++;
+            kisebb++;
 
-            int ideiglenes = lista[kisebbIndex];
-            lista[kisebbIndex] = lista[aktualisIndex];
-            lista[aktualisIndex] = ideiglenes;
+            int csere = lista[kisebb];
+            lista[kisebb] = lista[i];
+            lista[i] = csere;
         }
     }
 
-    int csere = lista[kisebbIndex + 1];
-    lista[kisebbIndex + 1] = lista[felso];
-    lista[felso] = csere;
+    int pivotCsere = lista[kisebb + 1];
+    lista[kisebb + 1] = lista[felso];
+    lista[felso] = pivotCsere;
 
-    return kisebbIndex + 1;
+    return kisebb + 1;
 }
 
 static int[] GyorsRendezes(int[] lista, int also, int felso)

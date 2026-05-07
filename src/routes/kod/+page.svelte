@@ -7,11 +7,7 @@
 	import csharp from 'svelte-highlight/languages/csharp';
 	import atomOneDark from 'svelte-highlight/styles/atom-one-dark';
 
-	import {
-		categories,
-		type CodeLanguage,
-		type LibraryItem
-	} from '$lib/data/algorithmCategories';
+	import { categories, type CodeLanguage, type LibraryItem } from '$lib/data/algorithmCategories';
 
 	const COOKIE_NAME = 'preferred_code_language';
 	const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 4;
@@ -26,8 +22,7 @@
 	let selectedLanguage: CodeLanguage = 'python';
 	let codeDialog: HTMLDialogElement;
 
-	$: activeItems =
-		categories.find((category) => category.id === activeCategory)?.items ?? [];
+	$: activeItems = categories.find((category) => category.id === activeCategory)?.items ?? [];
 
 	$: selectedCode =
 		selectedItem?.codes.find((example) => example.language === selectedLanguage)?.code ??
@@ -154,33 +149,31 @@
 					<div>
 						<h2>{selectedItem.label}</h2>
 					</div>
-
-					<div class="dialog-language-actions">
-						<button
-							class="python-button"
-							class:active={selectedLanguage === 'python'}
-							on:click={switchToPython}
-						>
-							Python
-						</button>
-
-						<button
-							class="csharp-button"
-							class:active={selectedLanguage === 'csharp'}
-							on:click={switchToCSharp}
-						>
-							C#
-						</button>
-					</div>
 				</div>
 
 				<div class="code-wrapper">
 					<Highlight language={languageMap[selectedLanguage]} code={selectedCode} />
 				</div>
 
-				<button class="back-button" on:click={closeDialog}>
-					Vissza
-				</button>
+				<div class="dialog-language-actions">
+					<button
+						class="python-button"
+						class:active={selectedLanguage === 'python'}
+						on:click={switchToPython}
+					>
+						Python
+					</button>
+
+					<button
+						class="csharp-button"
+						class:active={selectedLanguage === 'csharp'}
+						on:click={switchToCSharp}
+					>
+						C#
+					</button>
+				</div>
+
+				<button class="back-button" on:click={closeDialog}> Vissza </button>
 			</div>
 		{/if}
 	</dialog>
@@ -190,7 +183,12 @@
 	:global(body) {
 		margin: 0;
 		font-family:
-			Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+			Inter,
+			ui-sans-serif,
+			system-ui,
+			-apple-system,
+			BlinkMacSystemFont,
+			'Segoe UI',
 			sans-serif;
 		background: #0f172a;
 		color: white;
@@ -373,13 +371,6 @@
 		font-size: clamp(1.25rem, 3vw, 1.8rem);
 	}
 
-	.function-name {
-		margin-top: 0.35rem;
-		color: #93c5fd;
-		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-		font-size: 1rem;
-	}
-
 	.code-wrapper {
 		flex: 1;
 		min-height: 0;
@@ -391,19 +382,20 @@
 
 	:global(pre) {
 		margin: 0 !important;
-		padding: 1.3rem !important;
-		font-size: 1.08rem !important;
-		line-height: 1.65 !important;
-		overflow: auto !important;
+		padding: 1rem !important;
+		font-size: clamp(0.78rem, 2.5vw, 1.05rem) !important;
+		line-height: 1.55 !important;
+		overflow-x: auto !important;
+		overflow-y: auto !important;
+		white-space: pre !important;
+		tab-size: 2;
 		min-height: 100%;
 		box-sizing: border-box;
 	}
 
 	:global(code) {
-		font-family:
-			'JetBrains Mono', 'Fira Code', Consolas, Monaco, 'Courier New', monospace !important;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
 	}
-
 	.back-button {
 		width: 100%;
 		border: none;
