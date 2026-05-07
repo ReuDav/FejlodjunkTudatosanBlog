@@ -24,12 +24,17 @@
 
 	$: activeItems = categories.find((category) => category.id === activeCategory)?.items ?? [];
 
+	$: currentItemIndex = selectedItem
+		? activeItems.findIndex((item) => item.id === selectedItem?.id)
+		: -1;
+
+	$: hasPreviousItem = currentItemIndex > 0;
+	$: hasNextItem = currentItemIndex !== -1 && currentItemIndex < activeItems.length - 1;
+
 	$: selectedCode =
 		selectedItem?.codes.find((example) => example.language === selectedLanguage)?.code ??
 		selectedItem?.codes[0]?.code ??
 		'';
-
-	$: selectedLanguageLabel = selectedLanguage === 'python' ? 'Python' : 'C#';
 
 	onMount(() => {
 		const savedLanguage = getCookie(COOKIE_NAME);
@@ -80,6 +85,16 @@
 		selectedItem = null;
 	}
 
+	function showPreviousItem() {
+		if (!hasPreviousItem) return;
+		selectedItem = activeItems[currentItemIndex - 1];
+	}
+
+	function showNextItem() {
+		if (!hasNextItem) return;
+		selectedItem = activeItems[currentItemIndex + 1];
+	}
+
 	function switchToCSharp() {
 		selectedLanguage = 'csharp';
 		setLanguageCookie('csharp');
@@ -99,9 +114,7 @@
 <div class="page">
 	<div class="content">
 		<header class="header">
-			<div>
-				<h1>Programozási tételek és algoritmusok</h1>
-			</div>
+			<h1>Programozási tételek és algoritmusok</h1>
 
 			<div class="language-actions">
 				<button
@@ -125,7 +138,7 @@
 		<div class="subnav">
 			{#each activeItems as item}
 				<button class="item-button" on:click={() => openDialog(item)}>
-					<span>{item.label}</span>
+					{item.label}
 				</button>
 			{/each}
 		</div>
@@ -144,36 +157,58 @@
 
 	<dialog bind:this={codeDialog} class="code-dialog">
 		{#if selectedItem}
-			<div class="dialog-content">
-				<div class="dialog-header">
-					<div>
-						<h2>{selectedItem.label}</h2>
-					</div>
-				</div>
+			<div class="dialog-shell">
+				<header class="dialog-header">
+					<h2>{selectedItem.label}</h2>
+				</header>
 
 				<div class="code-wrapper">
 					<Highlight language={languageMap[selectedLanguage]} code={selectedCode} />
 				</div>
 
-				<div class="dialog-language-actions">
-					<button
-						class="python-button"
-						class:active={selectedLanguage === 'python'}
-						on:click={switchToPython}
-					>
-						Python
-					</button>
+				<footer class="dialog-controls">
+					<div class="pager-row">
+						<button
+							class="pager-button"
+							disabled={!hasPreviousItem}
+							on:click={showPreviousItem}
+							aria-label="Előző tétel"
+						>
+							←
+						</button>
 
-					<button
-						class="csharp-button"
-						class:active={selectedLanguage === 'csharp'}
-						on:click={switchToCSharp}
-					>
-						C#
-					</button>
-				</div>
+						<div class="dialog-language-actions">
+							<button
+								class="python-button"
+								class:active={selectedLanguage === 'python'}
+								on:click={switchToPython}
+							>
+								Python
+							</button>
 
-				<button class="back-button" on:click={closeDialog}> Vissza </button>
+							<button
+								class="csharp-button"
+								class:active={selectedLanguage === 'csharp'}
+								on:click={switchToCSharp}
+							>
+								C#
+							</button>
+						</div>
+
+						<button
+							class="pager-button"
+							disabled={!hasNextItem}
+							on:click={showNextItem}
+							aria-label="Következő tétel"
+						>
+							→
+						</button>
+					</div>
+
+					<button class="back-button" on:click={closeDialog}>
+						Vissza
+					</button>
+				</footer>
 			</div>
 		{/if}
 	</dialog>
@@ -215,13 +250,8 @@
 	}
 
 	h1 {
-		margin: 0 0 0.35rem;
-		font-size: clamp(1.35rem, 3vw, 2rem);
-	}
-
-	p {
 		margin: 0;
-		color: #cbd5e1;
+		font-size: clamp(1.35rem, 3vw, 2rem);
 	}
 
 	.language-actions,
@@ -275,9 +305,6 @@
 
 	.item-button {
 		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
 		border: none;
 		border-radius: 14px;
 		padding: 0.9rem 1rem;
@@ -290,11 +317,6 @@
 
 	.item-button:hover {
 		background: #334155;
-	}
-
-	.item-button small {
-		color: #93c5fd;
-		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 	}
 
 	.bottom-nav {
@@ -335,7 +357,7 @@
 		position: fixed;
 		inset: 0;
 		width: 100vw;
-		height: 100vh;
+		height: 100dvh;
 		max-width: none;
 		max-height: none;
 		margin: 0;
@@ -344,58 +366,81 @@
 		padding: 0;
 		background: #020617;
 		color: white;
+		overflow: hidden;
 	}
 
 	.code-dialog::backdrop {
 		background: rgba(0, 0, 0, 0.8);
 	}
 
-	.dialog-content {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
+	.dialog-shell {
+		height: 100dvh;
+		display: grid;
+		grid-template-rows: auto minmax(0, 1fr) auto;
+		gap: 0.75rem;
 		padding: 1rem;
 		box-sizing: border-box;
-	}
-
-	.dialog-header {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		gap: 1rem;
-		margin-bottom: 1rem;
+		overflow: hidden;
 	}
 
 	.dialog-header h2 {
 		margin: 0;
-		font-size: clamp(1.25rem, 3vw, 1.8rem);
+		font-size: clamp(1.15rem, 3vw, 1.8rem);
 	}
 
 	.code-wrapper {
-		flex: 1;
 		min-height: 0;
 		overflow: auto;
-		margin-bottom: 1rem;
 		border-radius: 14px;
 		background: #0b1020;
 	}
 
-	:global(pre) {
-		margin: 0 !important;
-		padding: 1rem !important;
-		font-size: clamp(0.78rem, 2.5vw, 1.05rem) !important;
-		line-height: 1.55 !important;
-		overflow-x: auto !important;
-		overflow-y: auto !important;
-		white-space: pre !important;
-		tab-size: 2;
-		min-height: 100%;
-		box-sizing: border-box;
+	.dialog-controls {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 	}
 
-	:global(code) {
-		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+	.pager-row {
+		display: grid;
+		grid-template-columns: 100px minmax(0, 1fr) 100px;
+		align-content: center;
+		gap: 0.5rem;
+		align-content: center;
 	}
+
+	.dialog-language-actions {
+		justify-content: center;
+		min-width: 0;
+	}
+
+	.dialog-language-actions .python-button,
+	.dialog-language-actions .csharp-button {
+		flex: 1;
+		max-width: 130px;
+	}
+
+	.pager-button {
+		width: 100%;
+		height: 48px;
+		border: none;
+		border-radius: 14px;
+		background: #1e293b;
+		color: white;
+		font-size: 2rem;
+		font-weight: 900;
+		cursor: pointer;
+	}
+
+	.pager-button:hover:not(:disabled) {
+		background: #334155;
+	}
+
+	.pager-button:disabled {
+		opacity: 0.35;
+		cursor: not-allowed;
+	}
+
 	.back-button {
 		width: 100%;
 		border: none;
@@ -412,33 +457,72 @@
 		background: #1d4ed8;
 	}
 
+	:global(pre) {
+		margin: 0 !important;
+		padding: 1rem !important;
+		font-size: clamp(0.78rem, 2.5vw, 1.05rem) !important;
+		line-height: 1.55 !important;
+		overflow: auto !important;
+		white-space: pre !important;
+		tab-size: 2;
+		min-height: 100%;
+		box-sizing: border-box;
+	}
+
+	:global(code) {
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+	}
+
 	@media (max-width: 640px) {
+		.page {
+			padding-bottom: 210px;
+		}
+
 		.content {
 			padding: 0.75rem;
 		}
 
-		.header,
-		.dialog-header {
+		.header {
 			flex-direction: column;
 		}
 
-		.language-actions,
-		.dialog-language-actions {
+		.language-actions {
 			width: 100%;
 		}
 
-		.python-button,
-		.csharp-button {
+		.language-actions .python-button,
+		.language-actions .csharp-button {
 			flex: 1;
 		}
 
-		.dialog-content {
+		.dialog-shell {
+			height: 100dvh;
+			gap: 0.6rem;
 			padding: 0.75rem;
 		}
 
+		.dialog-header h2 {
+			font-size: 1.05rem;
+		}
+
+		.pager-button {
+			width: 100%;
+			height: 46px;
+		}
+
+		.dialog-language-actions .python-button,
+		.dialog-language-actions .csharp-button {
+			padding: 0.65rem 0.5rem;
+			max-width: none;
+		}
+
+		.back-button {
+			padding: 0.85rem;
+		}
+
 		:global(pre) {
-			font-size: 0.95rem !important;
-			padding: 1rem !important;
+			font-size: 0.82rem !important;
+			padding: 0.85rem !important;
 		}
 	}
 </style>
