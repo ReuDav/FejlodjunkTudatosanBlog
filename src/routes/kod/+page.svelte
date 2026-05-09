@@ -448,6 +448,7 @@
 		padding: 1rem;
 		background: #2563eb;
 		color: white;
+		margin-bottom:  1.5em;
 		font-size: 1rem;
 		font-weight: 800;
 		cursor: pointer;
