@@ -2,7 +2,7 @@ import { redirect } from '@sveltejs/kit';
 
 export function load({ url, request }) {
 	const pathname = url.pathname;
-	if (pathname.startsWith('/hu') || pathname.startsWith('/en') || pathname.startsWith('/kod') ) return;
+	if (pathname.startsWith('/hu') || pathname.startsWith('/en') || pathname.startsWith('/kod') || pathname.startsWith('/chat') ) return;
 
 	const accept = request.headers.get('accept-language') || '';
 	const lang = accept.split(',')[0]?.split('-')[0] ?? 'hu';
