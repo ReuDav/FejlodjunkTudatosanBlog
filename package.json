@@ -49,6 +49,7 @@
 				"svelte-highlight": "^7.9.0",
 				"svelte-i18n": "^4.0.1",
 				"sveltekit-i18n": "^2.4.2",
-				"three": "^0.180.0"
+				"three": "^0.180.0",
+				"vercel": "^54.6.1"
 		}
 }

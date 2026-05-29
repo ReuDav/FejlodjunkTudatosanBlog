@@ -1,16 +1,30 @@
 <script lang="ts">
 	let message = $state('');
 	let files = $state<FileList | null>(null);
+	let fileInput = $state<HTMLInputElement | null>(null);
+
 	let answer = $state('');
 	let error = $state('');
 	let loading = $state(false);
 
+	const maxFileSize = 8 * 1024 * 1024;
+
 	async function send() {
 		if (!message.trim() && (!files || files.length === 0)) return;
 
-		loading = true;
-		answer = '';
 		error = '';
+		answer = '';
+
+		if (files) {
+			for (const file of files) {
+				if (file.size > maxFileSize) {
+					error = `${file.name} túl nagy. Maximum 8MB fájlonként.`;
+					return;
+				}
+			}
+		}
+
+		loading = true;
 
 		const form = new FormData();
 		form.append('message', message);
@@ -37,6 +51,10 @@
 			answer = data.answer;
 			message = '';
 			files = null;
+
+			if (fileInput) {
+				fileInput.value = '';
+			}
 		} catch {
 			error = 'Nem sikerült elküldeni az üzenetet.';
 		} finally {
@@ -50,20 +68,19 @@
 		<h1>C# Mentor Chat</h1>
 
 		<div class="box">
-			<textarea
-				bind:value={message}
-				placeholder="Írd be a kérdésed..."
-				rows="5"
-			></textarea>
+			<textarea bind:value={message} placeholder="Írd be a kérdésed..." rows="5"></textarea>
 
 			<div class="actions">
 				<label>
 					Fájlok
 					<input
+						bind:this={fileInput}
 						type="file"
 						multiple
 						accept="image/*,.pdf,.txt,.csv,.json,.md,.js,.ts,.html,.css,.php,.cs"
-						onchange={(e) => (files = e.currentTarget.files)}
+						onchange={(e) => {
+							files = e.currentTarget.files;
+						}}
 					/>
 				</label>
 
@@ -74,7 +91,15 @@
 		</div>
 
 		{#if files && files.length > 0}
-			<p class="files">{files.length} fájl kiválasztva</p>
+			<div class="files">
+				<p>{files.length} fájl kiválasztva:</p>
+
+				<ul>
+					{#each Array.from(files) as file}
+						<li>{file.name}</li>
+					{/each}
+				</ul>
+			</div>
 		{/if}
 
 		{#if error}
@@ -158,9 +183,21 @@
 	}
 
 	.files {
-		margin: 0;
 		font-size: 0.9rem;
-		opacity: 0.7;
+		opacity: 0.75;
+	}
+
+	.files p {
+		margin: 0 0 0.25rem;
+	}
+
+	.files ul {
+		margin: 0;
+		padding-left: 1rem;
+	}
+
+	.files li {
+		line-height: 1.5;
 	}
 
 	.error {
