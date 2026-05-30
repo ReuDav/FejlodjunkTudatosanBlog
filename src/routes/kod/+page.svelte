@@ -320,38 +320,46 @@
 	}
 
 	.bottom-nav {
-		position: fixed;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		padding: 0.75rem;
-		background: rgba(15, 23, 42, 0.96);
-		backdrop-filter: blur(10px);
-		border-top: 1px solid #1f2937;
-	}
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: .75rem;
 
-	.bottom-nav button {
-		width: 100%;
-		border: none;
-		border-radius: 14px;
-		padding: 0.9rem 1rem;
-		background: #1e293b;
-		color: white;
-		font-weight: 800;
-		cursor: pointer;
-		text-align: center;
-	}
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
 
-	.bottom-nav button:hover {
-		background: #334155;
-	}
+	padding: 1rem;
+	background: rgba(15,17,21,.96);
+	backdrop-filter: blur(16px);
+	border-top: 1px solid rgba(255,255,255,.08);
+}
 
-	.bottom-nav button.active {
-		background: #2563eb;
-	}
+.bottom-nav button {
+	width: 100%;
+	min-height: 3rem;
+
+	border: 0;
+	border-radius: 14px;
+
+	background: #2a2f3a;
+	color: white;
+
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+
+	transition: .2s ease;
+}
+
+.bottom-nav button.active {
+	background: white;
+	color: #111;
+}
+
+.bottom-nav button:hover {
+	transform: translateY(-2px);
+}
 
 	.code-dialog {
 		position: fixed;

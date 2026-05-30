@@ -1,36 +1,36 @@
 export type CodeLanguage = 'python' | 'csharp';
 
 export type CodeExample = {
-	language: CodeLanguage;
-	code: string;
+    language: CodeLanguage;
+    code: string;
 };
 
 export type LibraryItem = {
-	id: string;
-	label: string;
-	functionName: string;
-	codes: CodeExample[];
+    id: string;
+    label: string;
+    functionName: string;
+    codes: CodeExample[];
 };
 
 export type AlgorithmCategory = {
-	id: 'alapveto' | 'kereses' | 'rendezes';
-	label: string;
-	items: LibraryItem[];
+    id: 'alapveto' | 'kereses' | 'rendezes' | 'feladatsor';
+    label: string;
+    items: LibraryItem[];
 };
 
 export const categories: AlgorithmCategory[] = [
-	{
-		id: 'alapveto',
-		label: 'Alapvető',
-		items: [
-			{
-				id: 'osszegzes',
-				label: 'Összegzés tétele',
-				functionName: 'osszegzes_tetel',
-				codes: [
-					{
-						language: 'python',
-						code: `def osszegzes_tetel(szamok):
+    {
+        id: 'alapveto',
+        label: 'Alapvető',
+        items: [
+            {
+                id: 'osszegzes',
+                label: 'Összegzés tétele',
+                functionName: 'osszegzes_tetel',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def osszegzes_tetel(szamok):
     osszeg = 0
 
     for szam in szamok:
@@ -66,10 +66,10 @@ def kettoveloszthatok(szamok):
             parosak.append(szam)
 
     return parosak`
-					},
-					{
-						language: 'csharp',
-						code: `static int OsszegzesTetel(int[] szamok)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int OsszegzesTetel(int[] szamok)
 {
     int osszeg = 0;
 
@@ -122,17 +122,17 @@ static List<int> KettovelOszthatok(int[] szamok)
 
     return parosak;
 }`
-					}
-				]
-			},
-			{
-				id: 'kivalogatas',
-				label: 'Kiválogatás tétele',
-				functionName: 'kivalogatas',
-				codes: [
-					{
-						language: 'python',
-						code: `def kivalogatas(szamok, hatar):
+                    }
+                ]
+            },
+            {
+                id: 'kivalogatas',
+                label: 'Kiválogatás tétele',
+                functionName: 'kivalogatas',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def kivalogatas(szamok, hatar):
     eredmeny = []
 
     for szam in szamok:
@@ -140,10 +140,10 @@ static List<int> KettovelOszthatok(int[] szamok)
             eredmeny.append(szam)
 
     return eredmeny`
-					},
-					{
-						language: 'csharp',
-						code: `static List<int> Kivalogatas(int[] szamok, int hatar)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static List<int> Kivalogatas(int[] szamok, int hatar)
 {
     List<int> eredmeny = new List<int>();
 
@@ -157,17 +157,17 @@ static List<int> KettovelOszthatok(int[] szamok)
 
     return eredmeny;
 }`
-					}
-				]
-			},
-			{
-				id: 'megszamlalas',
-				label: 'Megszámlálás tétele',
-				functionName: 'megszamlalas',
-				codes: [
-					{
-						language: 'python',
-						code: `def megszamlalas(szamok):
+                    }
+                ]
+            },
+            {
+                id: 'megszamlalas',
+                label: 'Megszámlálás tétele',
+                functionName: 'megszamlalas',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def megszamlalas(szamok):
     db = 0
 
     for szam in szamok:
@@ -184,10 +184,10 @@ def parosok_szama(szamok):
             db += 1
 
     return db`
-					},
-					{
-						language: 'csharp',
-						code: `static int Megszamlalas(int[] szamok)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int Megszamlalas(int[] szamok)
 {
     int db = 0;
 
@@ -213,26 +213,26 @@ static int ParosokSzama(int[] szamok)
 
     return db;
 }`
-					}
-				]
-			},
-			{
-				id: 'eldontes',
-				label: 'Eldöntés tétele',
-				functionName: 'eldontes',
-				codes: [
-					{
-						language: 'python',
-						code: `def eldontes(szamok, keresett):
+                    }
+                ]
+            },
+            {
+                id: 'eldontes',
+                label: 'Eldöntés tétele',
+                functionName: 'eldontes',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def eldontes(szamok, keresett):
     for szam in szamok:
         if szam == keresett:
             return True
 
     return False`
-					},
-					{
-						language: 'csharp',
-						code: `static bool Eldontes(int[] szamok, int keresett)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static bool Eldontes(int[] szamok, int keresett)
 {
     foreach (int szam in szamok)
     {
@@ -244,26 +244,26 @@ static int ParosokSzama(int[] szamok)
 
     return false;
 }`
-					}
-				]
-			},
-			{
-				id: 'kivalasztas',
-				label: 'Kiválasztás tétele',
-				functionName: 'kivalasztas',
-				codes: [
-					{
-						language: 'python',
-						code: `def kivalasztas(szoveg, betu):
+                    }
+                ]
+            },
+            {
+                id: 'kivalasztas',
+                label: 'Kiválasztás tétele',
+                functionName: 'kivalasztas',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def kivalasztas(szoveg, betu):
     for index in range(len(szoveg)):
         if szoveg[index] == betu:
             return index
 
     return -1`
-					},
-					{
-						language: 'csharp',
-						code: `static int Kivalasztas(string szoveg, char betu)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int Kivalasztas(string szoveg, char betu)
 {
     for (int i = 0; i < szoveg.Length; i++)
     {
@@ -275,17 +275,17 @@ static int ParosokSzama(int[] szamok)
 
     return -1;
 }`
-					}
-				]
-			},
-			{
-				id: 'szetvalogatas',
-				label: 'Szétválogatás tétele',
-				functionName: 'szetvalogatas',
-				codes: [
-					{
-						language: 'python',
-						code: `def szetvalogatas(szamok):
+                    }
+                ]
+            },
+            {
+                id: 'szetvalogatas',
+                label: 'Szétválogatás tétele',
+                functionName: 'szetvalogatas',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def szetvalogatas(szamok):
     pozitivak = []
     negativak = []
 
@@ -296,10 +296,10 @@ static int ParosokSzama(int[] szamok)
             negativak.append(szam)
 
     return pozitivak, negativak`
-					},
-					{
-						language: 'csharp',
-						code: `static (List<int> pozitivak, List<int> negativak) Szetvalogatas(int[] szamok)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static (List<int> pozitivak, List<int> negativak) Szetvalogatas(int[] szamok)
 {
     List<int> pozitivak = new List<int>();
     List<int> negativak = new List<int>();
@@ -318,17 +318,17 @@ static int ParosokSzama(int[] szamok)
 
     return (pozitivak, negativak);
 }`
-					}
-				]
-			},
-			{
-				id: 'metszet',
-				label: 'Metszet tétele',
-				functionName: 'metszet',
-				codes: [
-					{
-						language: 'python',
-						code: `def metszet(lista1, lista2):
+                    }
+                ]
+            },
+            {
+                id: 'metszet',
+                label: 'Metszet tétele',
+                functionName: 'metszet',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def metszet(lista1, lista2):
     kozos = []
 
     for elem in lista1:
@@ -336,10 +336,10 @@ static int ParosokSzama(int[] szamok)
             kozos.append(elem)
 
     return kozos`
-					},
-					{
-						language: 'csharp',
-						code: `static List<int> Metszet(int[] lista1, int[] lista2)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static List<int> Metszet(int[] lista1, int[] lista2)
 {
     List<int> kozos = new List<int>();
 
@@ -353,17 +353,17 @@ static int ParosokSzama(int[] szamok)
 
     return kozos;
 }`
-					}
-				]
-			},
-			{
-				id: 'osszefuttatas',
-				label: 'Összefuttatás tétele',
-				functionName: 'osszefuttatas',
-				codes: [
-					{
-						language: 'python',
-						code: `def osszefuttatas(lista1, lista2):
+                    }
+                ]
+            },
+            {
+                id: 'osszefuttatas',
+                label: 'Összefuttatás tétele',
+                functionName: 'osszefuttatas',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def osszefuttatas(lista1, lista2):
     eredmeny = []
     i = 0
     j = 0
@@ -389,10 +389,10 @@ static int ParosokSzama(int[] szamok)
         j += 1
 
     return eredmeny`
-					},
-					{
-						language: 'csharp',
-						code: `static List<int> Osszefuttatas(int[] lista1, int[] lista2)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static List<int> Osszefuttatas(int[] lista1, int[] lista2)
 {
     List<int> eredmeny = new List<int>();
     int i = 0;
@@ -432,32 +432,32 @@ static int ParosokSzama(int[] szamok)
 
     return eredmeny;
 }`
-					}
-				]
-			}
-		]
-	},
-	{
-		id: 'kereses',
-		label: 'Keresés',
-		items: [
-			{
-				id: 'linearis-kereses',
-				label: 'Lineáris keresés',
-				functionName: 'linearis_kereses',
-				codes: [
-					{
-						language: 'python',
-						code: `def linearis_kereses(lista, keresett):
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: 'kereses',
+        label: 'Keresés',
+        items: [
+            {
+                id: 'linearis-kereses',
+                label: 'Lineáris keresés',
+                functionName: 'linearis_kereses',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def linearis_kereses(lista, keresett):
     for index in range(len(lista)):
         if lista[index] == keresett:
             return index
 
     return -1`
-					},
-					{
-						language: 'csharp',
-						code: `static int LinearisKereses(int[] lista, int keresett)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int LinearisKereses(int[] lista, int keresett)
 {
     for (int i = 0; i < lista.Length; i++)
     {
@@ -469,17 +469,17 @@ static int ParosokSzama(int[] szamok)
 
     return -1;
 }`
-					}
-				]
-			},
-			{
-				id: 'linearis-kereses-while',
-				label: 'Lineáris keresés while',
-				functionName: 'linearis_kereses_while',
-				codes: [
-					{
-						language: 'python',
-						code: `def linearis_kereses_while(lista, keresett):
+                    }
+                ]
+            },
+            {
+                id: 'linearis-kereses-while',
+                label: 'Lineáris keresés while',
+                functionName: 'linearis_kereses_while',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def linearis_kereses_while(lista, keresett):
     index = 0
 
     while index < len(lista) and lista[index] != keresett:
@@ -489,10 +489,10 @@ static int ParosokSzama(int[] szamok)
         return index
 
     return -1`
-					},
-					{
-						language: 'csharp',
-						code: `static int LinearisKeresesWhile(int[] lista, int keresett)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int LinearisKeresesWhile(int[] lista, int keresett)
 {
     int index = 0;
 
@@ -508,17 +508,17 @@ static int ParosokSzama(int[] szamok)
 
     return -1;
 }`
-					}
-				]
-			},
-			{
-				id: 'strazsas-kereses',
-				label: 'Strázsás keresés',
-				functionName: 'strazsas_kereses',
-				codes: [
-					{
-						language: 'python',
-						code: `def strazsas_kereses(lista, keresett):
+                    }
+                ]
+            },
+            {
+                id: 'strazsas-kereses',
+                label: 'Strázsás keresés',
+                functionName: 'strazsas_kereses',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def strazsas_kereses(lista, keresett):
     masolat = lista.copy()
     masolat.append(keresett)
 
@@ -531,10 +531,10 @@ static int ParosokSzama(int[] szamok)
         return index
 
     return -1`
-					},
-					{
-						language: 'csharp',
-						code: `static int StrazsasKereses(int[] lista, int keresett)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int StrazsasKereses(int[] lista, int keresett)
 {
     int[] masolat = new int[lista.Length + 1];
 
@@ -559,17 +559,17 @@ static int ParosokSzama(int[] szamok)
 
     return -1;
 }`
-					}
-				]
-			},
-			{
-				id: 'linearis-kereses-rendezett',
-				label: 'Lineáris keresés rendezett sorozatban',
-				functionName: 'linearis_kereses_rendezett',
-				codes: [
-					{
-						language: 'python',
-						code: `def linearis_kereses_rendezett(lista, keresett):
+                    }
+                ]
+            },
+            {
+                id: 'linearis-kereses-rendezett',
+                label: 'Lineáris keresés rendezett sorozatban',
+                functionName: 'linearis_kereses_rendezett',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def linearis_kereses_rendezett(lista, keresett):
     for index in range(len(lista)):
         if lista[index] == keresett:
             return index
@@ -578,10 +578,10 @@ static int ParosokSzama(int[] szamok)
             return -1
 
     return -1`
-					},
-					{
-						language: 'csharp',
-						code: `static int LinearisKeresesRendezett(int[] lista, int keresett)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int LinearisKeresesRendezett(int[] lista, int keresett)
 {
     for (int i = 0; i < lista.Length; i++)
     {
@@ -598,17 +598,17 @@ static int ParosokSzama(int[] szamok)
 
     return -1;
 }`
-					}
-				]
-			},
-			{
-				id: 'binaris-kereses',
-				label: 'Bináris keresés',
-				functionName: 'binaris_kereses',
-				codes: [
-					{
-						language: 'python',
-						code: `def binaris_kereses(lista, keresett):
+                    }
+                ]
+            },
+            {
+                id: 'binaris-kereses',
+                label: 'Bináris keresés',
+                functionName: 'binaris_kereses',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def binaris_kereses(lista, keresett):
     also = 0
     felso = len(lista) - 1
 
@@ -624,10 +624,10 @@ static int ParosokSzama(int[] szamok)
             felso = kozep - 1
 
     return -1`
-					},
-					{
-						language: 'csharp',
-						code: `static int BinarisKereses(int[] lista, int keresett)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int BinarisKereses(int[] lista, int keresett)
 {
     int also = 0;
     int felso = lista.Length - 1;
@@ -653,17 +653,17 @@ static int ParosokSzama(int[] szamok)
 
     return -1;
 }`
-					}
-				]
-			},
-			{
-				id: 'ugro-kereses',
-				label: 'Ugró keresés',
-				functionName: 'ugro_kereses',
-				codes: [
-					{
-						language: 'python',
-						code: `import math
+                    }
+                ]
+            },
+            {
+                id: 'ugro-kereses',
+                label: 'Ugró keresés',
+                functionName: 'ugro_kereses',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `import math
 
 def ugro_kereses(lista, keresett):
     n = len(lista)
@@ -680,10 +680,10 @@ def ugro_kereses(lista, keresett):
             return -1
 
     return -1`
-					},
-					{
-						language: 'csharp',
-						code: `static int UgroKereses(int[] lista, int keresett)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int UgroKereses(int[] lista, int keresett)
 {
     int n = lista.Length;
     int lepes = (int)Math.Sqrt(n);
@@ -708,23 +708,23 @@ def ugro_kereses(lista, keresett):
 
     return -1;
 }`
-					}
-				]
-			}
-		]
-	},
-	{
-		id: 'rendezes',
-		label: 'Rendezés',
-		items: [
-			{
-				id: 'beszuro-rendezes',
-				label: 'Beszúró rendezés',
-				functionName: 'beszuro_rendezes',
-				codes: [
-					{
-						language: 'python',
-						code: `def beszuro_rendezes(lista):
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: 'rendezes',
+        label: 'Rendezés',
+        items: [
+            {
+                id: 'beszuro-rendezes',
+                label: 'Beszúró rendezés',
+                functionName: 'beszuro_rendezes',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def beszuro_rendezes(lista):
     for i in range(1, len(lista)):
         kulcs = lista[i]
         j = i - 1
@@ -736,10 +736,10 @@ def ugro_kereses(lista, keresett):
         lista[j + 1] = kulcs
 
     return lista`
-					},
-					{
-						language: 'csharp',
-						code: `static int[] BeszuroRendezes(int[] lista)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int[] BeszuroRendezes(int[] lista)
 {
     for (int i = 1; i < lista.Length; i++)
     {
@@ -757,17 +757,17 @@ def ugro_kereses(lista, keresett):
 
     return lista;
 }`
-					}
-				]
-			},
-			{
-				id: 'buborek-rendezes',
-				label: 'Buborék rendezés',
-				functionName: 'buborekrendezes',
-				codes: [
-					{
-						language: 'python',
-						code: `def buborekrendezes(lista):
+                    }
+                ]
+            },
+            {
+                id: 'buborek-rendezes',
+                label: 'Buborék rendezés',
+                functionName: 'buborekrendezes',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def buborekrendezes(lista):
     n = len(lista)
 
     for i in range(n):
@@ -782,10 +782,10 @@ def ugro_kereses(lista, keresett):
             break
 
     return lista`
-					},
-					{
-						language: 'csharp',
-						code: `static int[] BuborekRendezes(int[] lista)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int[] BuborekRendezes(int[] lista)
 {
     int n = lista.Length;
 
@@ -813,17 +813,17 @@ def ugro_kereses(lista, keresett):
 
     return lista;
 }`
-					}
-				]
-			},
-			{
-				id: 'kivalasztasos-rendezes',
-				label: 'Kiválasztásos rendezés',
-				functionName: 'kivalasztasos_rendezes',
-				codes: [
-					{
-						language: 'python',
-						code: `def kivalasztasos_rendezes(lista):
+                    }
+                ]
+            },
+            {
+                id: 'kivalasztasos-rendezes',
+                label: 'Kiválasztásos rendezés',
+                functionName: 'kivalasztasos_rendezes',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def kivalasztasos_rendezes(lista):
     n = len(lista)
 
     for i in range(n):
@@ -836,10 +836,10 @@ def ugro_kereses(lista, keresett):
         lista[i], lista[min_index] = lista[min_index], lista[i]
 
     return lista`
-					},
-					{
-						language: 'csharp',
-						code: `static int[] KivalasztasosRendezes(int[] lista)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int[] KivalasztasosRendezes(int[] lista)
 {
     int n = lista.Length;
 
@@ -862,17 +862,17 @@ def ugro_kereses(lista, keresett):
 
     return lista;
 }`
-					}
-				]
-			},
-			{
-				id: 'fesus-rendezes',
-				label: 'Fésűs rendezés',
-				functionName: 'fesus_rendezes',
-				codes: [
-					{
-						language: 'python',
-						code: `def fesus_rendezes(lista):
+                    }
+                ]
+            },
+            {
+                id: 'fesus-rendezes',
+                label: 'Fésűs rendezés',
+                functionName: 'fesus_rendezes',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def fesus_rendezes(lista):
     n = len(lista)
     res = n
     volt_csere = True
@@ -887,10 +887,10 @@ def ugro_kereses(lista, keresett):
                 volt_csere = True
 
     return lista`
-					},
-					{
-						language: 'csharp',
-						code: `static int[] FesusRendezes(int[] lista)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int[] FesusRendezes(int[] lista)
 {
     int n = lista.Length;
     int res = n;
@@ -916,17 +916,17 @@ def ugro_kereses(lista, keresett):
 
     return lista;
 }`
-					}
-				]
-			},
-			{
-				id: 'koktel-rendezes',
-				label: 'Koktél rendezés',
-				functionName: 'koktel_rendezes',
-				codes: [
-					{
-						language: 'python',
-						code: `def koktel_rendezes(lista):
+                    }
+                ]
+            },
+            {
+                id: 'koktel-rendezes',
+                label: 'Koktél rendezés',
+                functionName: 'koktel_rendezes',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def koktel_rendezes(lista):
     bal = 0
     jobb = len(lista) - 1
     volt_csere = True
@@ -953,10 +953,10 @@ def ugro_kereses(lista, keresett):
         bal += 1
 
     return lista`
-					},
-					{
-						language: 'csharp',
-						code: `static int[] KoktelRendezes(int[] lista)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int[] KoktelRendezes(int[] lista)
 {
     int bal = 0;
     int jobb = lista.Length - 1;
@@ -1003,17 +1003,17 @@ def ugro_kereses(lista, keresett):
 
     return lista;
 }`
-					}
-				]
-			},
-			{
-				id: 'gyors-rendezes',
-				label: 'Gyorsrendezés',
-				functionName: 'gyors_rendezes',
-				codes: [
-					{
-						language: 'python',
-						code: `def particionalas(lista, also, felso):
+                    }
+                ]
+            },
+            {
+                id: 'gyors-rendezes',
+                label: 'Gyorsrendezés',
+                functionName: 'gyors_rendezes',
+                codes: [
+                    {
+                        language: 'python',
+                        code: `def particionalas(lista, also, felso):
     pivot = lista[felso]
     kisebb = also - 1
 
@@ -1035,10 +1035,10 @@ def gyors_rendezes(lista, also, felso):
         gyors_rendezes(lista, pivot_index + 1, felso)
 
     return lista`
-					},
-					{
-						language: 'csharp',
-						code: `static int Particionalas(int[] lista, int also, int felso)
+                    },
+                    {
+                        language: 'csharp',
+                        code: `static int Particionalas(int[] lista, int also, int felso)
 {
     int pivot = lista[felso];
     int kisebb = also - 1;
@@ -1074,9 +1074,366 @@ static int[] GyorsRendezes(int[] lista, int also, int felso)
 
     return lista;
 }`
-					}
-				]
-			}
-		]
-	}
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: 'feladatsor',
+        label: 'Feladatsor',
+        items: [
+            {
+                id: 'general-kulonbozo-lista',
+                label: 'Különböző számok generálása',
+                functionName: 'GeneralKulonbozoLista',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static int[] GeneralKulonbozoLista(int darab, int minimum, int maximum)
+{
+    int[] lista = new int[darab];
+    int db = 0;
+
+    while (db < darab)
+    {
+        int ujSzam = veletlen.Next(minimum, maximum + 1);
+
+        if (!TartalmazE(lista, db, ujSzam))
+        {
+            lista[db] = ujSzam;
+            db++;
+        }
+    }
+
+    return lista;
+}`
+                    }
+                ]
+            },
+            {
+                id: 'general-pontok',
+                label: 'Pontszámok generálása',
+                functionName: 'GeneralPontok',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static int[] GeneralPontok(int darab, int minimum, int maximum)
+{
+    int[] pontok = new int[darab];
+
+    for (int i = 0; i < pontok.Length; i++)
+    {
+        pontok[i] = veletlen.Next(minimum, maximum + 1);
+    }
+
+    return pontok;
+}`
+                    }
+                ]
+            },
+            {
+                id: 'tartalmaz-e',
+                label: 'Tartalmaz-e',
+                functionName: 'TartalmazE',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static bool TartalmazE(int[] lista, int ertek)
+{
+    int i = 0;
+
+    while (i < lista.Length && lista[i] != ertek)
+    {
+        i++;
+    }
+
+    return i < lista.Length;
+}
+
+static bool TartalmazE(int[] lista, int hossz, int ertek)
+{
+    int i = 0;
+
+    while (i < hossz && lista[i] != ertek)
+    {
+        i++;
+    }
+
+    return i < hossz;
+}`
+                    }
+                ]
+            },
+            {
+                id: 'unio',
+                label: 'Unió',
+                functionName: 'Unio',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static int[] Unio(int[] elso, int[] masodik)
+{
+    int[] eredmeny = new int[elso.Length + masodik.Length];
+    int db = 0;
+
+    for (int i = 0; i < elso.Length; i++)
+    {
+        eredmeny[db] = elso[i];
+        db++;
+    }
+
+    for (int i = 0; i < masodik.Length; i++)
+    {
+        if (!TartalmazE(eredmeny, db, masodik[i]))
+        {
+            eredmeny[db] = masodik[i];
+            db++;
+        }
+    }
+
+    return Levag(eredmeny, db);
+}`
+                    }
+                ]
+            },
+            {
+                id: 'kivalaszt-elso-legalabb-90',
+                label: 'Első legalább 90 pont',
+                functionName: 'KivalasztElsoLegalabb90',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static bool KivalasztElsoLegalabb90(int[] pontok, out int hely, out int ertek)
+{
+    int i = 0;
+
+    while (i < pontok.Length && pontok[i] < 90)
+    {
+        i++;
+    }
+
+    if (i < pontok.Length)
+    {
+        hely = i + 1;
+        ertek = pontok[i];
+        return true;
+    }
+
+    hely = -1;
+    ertek = -1;
+    return false;
+}`
+                    }
+                ]
+            },
+            {
+                id: 'keres',
+                label: 'Lineáris keresés hely visszaadással',
+                functionName: 'Keres',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static bool Keres(int[] lista, int keresett, out int hely)
+{
+    int i = 0;
+
+    while (i < lista.Length && lista[i] != keresett)
+    {
+        i++;
+    }
+
+    if (i < lista.Length)
+    {
+        hely = i + 1;
+        return true;
+    }
+
+    hely = -1;
+    return false;
+}`
+                    }
+                ]
+            },
+            {
+                id: 'kivalogat-legalabb-60',
+                label: 'Legalább 60 pont kiválogatása',
+                functionName: 'KivalogatLegalabb60',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static int[] KivalogatLegalabb60(int[] pontok)
+{
+    int[] eredmeny = new int[pontok.Length];
+    int db = 0;
+
+    for (int i = 0; i < pontok.Length; i++)
+    {
+        if (pontok[i] >= 60)
+        {
+            eredmeny[db] = pontok[i];
+            db++;
+        }
+    }
+
+    return Levag(eredmeny, db);
+}`
+                    }
+                ]
+            },
+            {
+                id: 'megszamol-kisebb-mint-50',
+                label: '50 alatti pontok megszámlálása',
+                functionName: 'MegszamolKisebbMint50',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static int MegszamolKisebbMint50(int[] pontok)
+{
+    int db = 0;
+
+    for (int i = 0; i < pontok.Length; i++)
+    {
+        if (pontok[i] < 50)
+        {
+            db++;
+        }
+    }
+
+    return db;
+}`
+                    }
+                ]
+            },
+            {
+                id: 'buborekos-rendezes',
+                label: 'Buborékos rendezés',
+                functionName: 'BuborekosRendezes',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static void BuborekosRendezes(int[] lista)
+{
+    for (int i = 0; i < lista.Length - 1; i++)
+    {
+        for (int j = 0; j < lista.Length - 1 - i; j++)
+        {
+            if (lista[j] > lista[j + 1])
+            {
+                int seged = lista[j];
+                lista[j] = lista[j + 1];
+                lista[j + 1] = seged;
+            }
+        }
+    }
+}`
+                    }
+                ]
+            },
+            {
+                id: 'top3-legnagyobb',
+                label: 'Top 3 legnagyobb érték',
+                functionName: 'Top3Legnagyobb',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static int[] Top3Legnagyobb(int[] pontok)
+{
+    int[] eredmeny = new int[3];
+    bool[] felhasznalt = new bool[pontok.Length];
+
+    for (int topIndex = 0; topIndex < 3; topIndex++)
+    {
+        int maxIndex = -1;
+
+        for (int i = 0; i < pontok.Length; i++)
+        {
+            if (!felhasznalt[i])
+            {
+                if (maxIndex == -1 || pontok[i] > pontok[maxIndex])
+                {
+                    maxIndex = i;
+                }
+            }
+        }
+
+        eredmeny[topIndex] = pontok[maxIndex];
+        felhasznalt[maxIndex] = true;
+    }
+
+    return eredmeny;
+}`
+                    }
+                ]
+            },
+            {
+                id: 'levag',
+                label: 'Tömb levágása',
+                functionName: 'Levag',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static int[] Levag(int[] lista, int hossz)
+{
+    int[] eredmeny = new int[hossz];
+
+    for (int i = 0; i < hossz; i++)
+    {
+        eredmeny[i] = lista[i];
+    }
+
+    return eredmeny;
+}`
+                    }
+                ]
+            },
+            {
+                id: 'masolat',
+                label: 'Tömb másolása',
+                functionName: 'Masolat',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static int[] Masolat(int[] lista)
+{
+    int[] masolat = new int[lista.Length];
+
+    for (int i = 0; i < lista.Length; i++)
+    {
+        masolat[i] = lista[i];
+    }
+
+    return masolat;
+}`
+                    }
+                ]
+            },
+            {
+                id: 'kiir-lista',
+                label: 'Lista kiírása',
+                functionName: 'KiirLista',
+                codes: [
+                    {
+                        language: 'csharp',
+                        code: `static void KiirLista(string nev, int[] lista)
+{
+    Console.Write(nev + ": [");
+
+    for (int i = 0; i < lista.Length; i++)
+    {
+        Console.Write(lista[i]);
+
+        if (i < lista.Length - 1)
+        {
+            Console.Write(", ");
+        }
+    }
+
+    Console.WriteLine("]");
+}`
+                    }
+                ]
+            }
+        ]
+    }
 ];
